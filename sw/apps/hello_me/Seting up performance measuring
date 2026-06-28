@@ -1,0 +1,10 @@
+Seting up performance measuring
+
+Conv0                                                      636,099 cycles
+Pool0                                                          570 cycles
+Conv1                                                       82,639 cycles
+Pool1                                                          273 cycles
+Linear0                                                     32,964 cycles
+Linear1                                                     35,230 cycles
+Select                                                         693 cycles
+Total                                                      788,468 cycles

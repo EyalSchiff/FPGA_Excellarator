@@ -1,0 +1,1803 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Thu Jun 11 21:36:15 2026
+Info: Command: quartus_sta -t /data/project/tsmc65/shared/qsyn/util/report_worst.tcl linear
+Info: Quartus(args): linear
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/data/project/tsmc65/shared/qsyn/basic.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332115): Report Timing: Found 20 setup paths (20 violated).  Worst case slack is -17.059
+    Info (332115): -setup
+    Info (332115): -npaths 20
+    Info (332115): -detail full_path
+    Info (332115): -stdout
+Info (332115): Path #1: Setup slack is -17.059 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][0]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][0]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][0]|q
+    Info (332115):      4.416      0.504 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[0]
+    Info (332115):      7.870      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.870      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.990      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.012      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.536      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.536      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.595      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.595      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.232      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.195      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.701      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.701      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.760      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.760      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.397      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.070      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.576      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.576      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.635      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.635      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.272      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.235      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.759      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.759      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.818      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.818      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.455      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.848      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.372      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.372      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.431      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.431      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.068      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.514      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     19.020      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     19.020      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.079      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.079      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.716      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.938      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.104      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.305      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.609      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.370      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.536      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.739      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.905      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.905      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.994      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.994
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.059 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #2: Setup slack is -17.047 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][7]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][7]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][7]|q
+    Info (332115):      4.404      0.492 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[7]
+    Info (332115):      7.858      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.858      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.978      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.000      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.524      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.524      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.583      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.583      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.220      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.183      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.689      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.689      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.748      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.748      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.385      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.058      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.564      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.564      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.623      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.623      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.260      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.223      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.747      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.747      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.806      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.806      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.443      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.836      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.360      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.360      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.419      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.419      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.056      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.502      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     19.008      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     19.008      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.067      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.067      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.704      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.926      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.092      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.293      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.597      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.358      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.524      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.727      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.893      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.893      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.982      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.982
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.047 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #3: Setup slack is -17.046 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][0]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][0]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][0]|q
+    Info (332115):      4.416      0.504 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[0]
+    Info (332115):      7.870      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.870      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.990      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.012      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.536      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.536      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.595      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.595      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.232      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.195      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.701      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.701      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.760      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.760      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.397      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.070      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.576      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.576      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.635      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.635      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.272      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.235      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.759      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.759      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.818      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.818      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.455      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.848      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.372      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.372      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.431      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.431      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.068      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.514      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     19.020      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     19.020      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.522      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.786      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.084      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.325      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.623      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.391      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.522      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.756      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.887      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.887      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.981      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.981
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.046 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #4: Setup slack is -17.034 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][3]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][3]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][3]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][3]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][3]|q
+    Info (332115):      4.391      0.479 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[3]
+    Info (332115):      7.845      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.845      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.965      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.987      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.511      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.511      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.570      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.570      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.207      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.170      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.676      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.676      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.735      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.735      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.372      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.045      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.551      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.551      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.610      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.610      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.247      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.210      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.734      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.734      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.793      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.793      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.430      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.823      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.347      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.347      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.406      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.406      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.043      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.489      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.995      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.995      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.054      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.054      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.691      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.913      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.079      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.280      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.584      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.345      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.511      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.714      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.880      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.880      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.969      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.969
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.034 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #5: Setup slack is -17.034 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][7]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][7]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][7]|q
+    Info (332115):      4.404      0.492 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[7]
+    Info (332115):      7.858      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.858      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.978      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.000      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.524      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.524      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.583      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.583      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.220      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.183      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.689      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.689      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.748      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.748      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.385      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.058      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.564      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.564      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.623      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.623      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.260      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.223      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.747      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.747      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.806      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.806      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.443      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.836      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.360      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.360      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.419      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.419      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.056      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.502      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     19.008      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     19.008      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.510      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.774      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.072      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.313      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.611      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.379      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.510      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.744      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.875      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.875      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.969      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.969
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.034 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #6: Setup slack is -17.026 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][6]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][6]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][6]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][6]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][6]|q
+    Info (332115):      4.383      0.471 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[6]
+    Info (332115):      7.837      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.837      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.957      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.979      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.503      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.503      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.562      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.562      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.199      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.162      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.668      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.668      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.727      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.727      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.364      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.037      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.543      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.543      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.602      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.602      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.239      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.202      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.726      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.726      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.785      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.785      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.422      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.815      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.339      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.339      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.398      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.398      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.035      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.481      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.987      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.987      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.046      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.046      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.683      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.905      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.071      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.272      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.576      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.337      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.503      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.706      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.872      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.872      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.961      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.961
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.026 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #7: Setup slack is -17.021 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][3]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][3]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][3]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][3]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][3]|q
+    Info (332115):      4.391      0.479 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[3]
+    Info (332115):      7.845      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.845      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.965      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.987      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.511      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.511      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.570      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.570      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.207      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.170      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.676      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.676      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.735      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.735      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.372      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.045      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.551      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.551      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.610      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.610      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.247      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.210      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.734      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.734      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.793      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.793      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.430      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.823      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.347      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.347      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.406      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.406      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.043      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.489      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.995      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.995      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.497      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.761      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.059      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.300      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.598      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.366      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.497      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.731      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.862      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.862      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.956      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.956
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.021 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #8: Setup slack is -17.018 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][1]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][1]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][1]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][1]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][1]|q
+    Info (332115):      4.375      0.463 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[1]
+    Info (332115):      7.829      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.829      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.949      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.971      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.495      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.495      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.554      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.554      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.191      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.154      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.660      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.660      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.719      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.719      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.356      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.029      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.535      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.535      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.594      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.594      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.231      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.194      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.718      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.718      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.777      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.777      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.414      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.807      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.331      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.331      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.390      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.390      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.027      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.473      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.979      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.979      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.038      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.038      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.675      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.897      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.063      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.264      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.568      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.329      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.495      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.698      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.864      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.864      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.953      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.953
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.018 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #9: Setup slack is -17.016 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][4]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][4]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][4]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][4]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][4]|q
+    Info (332115):      4.373      0.461 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[4]
+    Info (332115):      7.827      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.827      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.947      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.969      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.493      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.493      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.552      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.552      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.189      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.152      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.658      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.658      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.717      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.717      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.354      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.027      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.533      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.533      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.592      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.592      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.229      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.192      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.716      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.716      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.775      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.775      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.412      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.805      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.329      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.329      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.388      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.388      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.025      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.471      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.977      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.977      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.036      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.036      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.673      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.895      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.061      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.262      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.566      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.327      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.493      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.696      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.862      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.862      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.951      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.951
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.016 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #10: Setup slack is -17.016 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][5]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][5]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][5]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][5]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][5]|q
+    Info (332115):      4.373      0.461 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[5]
+    Info (332115):      7.827      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.827      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.947      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.969      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.493      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.493      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.552      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.552      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.189      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.152      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.658      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.658      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.717      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.717      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.354      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.027      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.533      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.533      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.592      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.592      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.229      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.192      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.716      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.716      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.775      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.775      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.412      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.805      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.329      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.329      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.388      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.388      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.025      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.471      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.977      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.977      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.036      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.036      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.673      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.895      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.061      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.262      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.566      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.327      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.493      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.696      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.862      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.862      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.951      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.951
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.016 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #11: Setup slack is -17.013 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][2]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][2]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][2]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][2]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][2]|q
+    Info (332115):      4.370      0.458 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[2]
+    Info (332115):      7.824      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.824      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.944      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.966      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.490      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.490      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.549      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.549      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.186      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.149      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.655      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.655      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.714      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.714      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.351      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.024      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.530      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.530      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.589      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.589      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.226      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.189      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.713      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.713      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.772      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.772      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.409      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.802      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.326      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.326      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.385      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.385      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.022      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.468      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.974      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.974      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.033      0.059 FR  CELL  linear|Add34~24|cout
+    Info (332115):     19.033      0.000 RR    IC  linear|Add34~26|cin
+    Info (332115):     19.670      0.637 RR  CELL  linear|Add34~26|combout
+    Info (332115):     19.892      0.222 RR    IC  linear|LessThan32~1|datad
+    Info (332115):     20.058      0.166 RR  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.259      0.201 RR    IC  linear|LessThan32~2|datac
+    Info (332115):     20.563      0.304 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.324      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.490      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.693      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.859      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.859      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.948      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.948
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.013 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #12: Setup slack is -17.013 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][6]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][6]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][6]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][6]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][6]|q
+    Info (332115):      4.383      0.471 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[6]
+    Info (332115):      7.837      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.837      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.957      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.979      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.503      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.503      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.562      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.562      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.199      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.162      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.668      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.668      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.727      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.727      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.364      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.037      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.543      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.543      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.602      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.602      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.239      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.202      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.726      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.726      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.785      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.785      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.422      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.815      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.339      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.339      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.398      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.398      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.035      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.481      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.987      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.987      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.489      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.753      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.051      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.292      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.590      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.358      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.489      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.723      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.854      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.854      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.948      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.948
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.013 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #13: Setup slack is -17.005 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][1]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][1]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][1]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][1]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][1]|q
+    Info (332115):      4.375      0.463 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[1]
+    Info (332115):      7.829      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.829      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.949      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.971      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.495      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.495      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.554      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.554      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.191      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.154      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.660      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.660      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.719      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.719      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.356      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.029      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.535      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.535      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.594      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.594      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.231      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.194      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.718      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.718      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.777      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.777      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.414      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.807      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.331      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.331      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.390      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.390      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.027      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.473      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.979      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.979      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.481      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.745      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.043      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.284      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.582      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.350      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.481      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.715      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.846      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.846      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.940      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.940
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.005 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #14: Setup slack is -17.003 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][4]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][4]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][4]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][4]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][4]|q
+    Info (332115):      4.373      0.461 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[4]
+    Info (332115):      7.827      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.827      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.947      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.969      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.493      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.493      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.552      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.552      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.189      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.152      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.658      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.658      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.717      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.717      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.354      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.027      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.533      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.533      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.592      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.592      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.229      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.192      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.716      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.716      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.775      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.775      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.412      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.805      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.329      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.329      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.388      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.388      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.025      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.471      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.977      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.977      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.479      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.743      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.041      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.282      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.580      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.348      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.479      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.713      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.844      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.844      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.938      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.938
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.003 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #15: Setup slack is -17.003 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][5]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][5]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][5]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][5]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][5]|q
+    Info (332115):      4.373      0.461 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[5]
+    Info (332115):      7.827      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.827      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.947      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.969      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.493      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.493      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.552      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.552      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.189      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.152      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.658      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.658      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.717      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.717      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.354      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.027      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.533      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.533      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.592      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.592      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.229      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.192      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.716      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.716      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.775      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.775      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.412      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.805      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.329      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.329      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.388      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.388      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.025      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.471      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.977      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.977      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.479      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.743      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.041      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.282      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.580      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.348      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.479      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.713      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.844      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.844      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.938      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.938
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.003 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #16: Setup slack is -17.000 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][2]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][2]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][2]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][2]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][2]|q
+    Info (332115):      4.370      0.458 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[2]
+    Info (332115):      7.824      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.824      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.944      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      8.966      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.490      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.490      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.549      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.549      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.186      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.149      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.655      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.655      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.714      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.714      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.351      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.024      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.530      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.530      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.589      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.589      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.226      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.189      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.713      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.713      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.772      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.772      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.409      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.802      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.326      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.326      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.385      0.059 FR  CELL  linear|Add19~20|cout
+    Info (332115):     17.385      0.000 RR    IC  linear|Add19~22|cin
+    Info (332115):     18.022      0.637 RR  CELL  linear|Add19~22|combout
+    Info (332115):     18.468      0.446 RR    IC  linear|Add34~22|dataa
+    Info (332115):     18.974      0.506 RF  CELL  linear|Add34~22|cout
+    Info (332115):     18.974      0.000 FF    IC  linear|Add34~24|cin
+    Info (332115):     19.476      0.502 FF  CELL  linear|Add34~24|combout
+    Info (332115):     19.740      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.038      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.279      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.577      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.345      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.476      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.710      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.841      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.841      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.935      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.935
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -17.000 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #17: Setup slack is -16.987 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][0]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][0]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][0]|q
+    Info (332115):      4.416      0.504 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[0]
+    Info (332115):      7.870      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.870      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.990      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.012      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.536      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.536      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.595      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.595      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.232      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.195      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.701      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.701      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.760      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.760      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.397      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.070      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.576      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.576      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.635      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.635      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.272      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.235      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.759      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.759      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.818      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.818      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.455      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.848      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.372      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.372      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.874      0.502 FF  CELL  linear|Add19~20|combout
+    Info (332115):     18.322      0.448 FF    IC  linear|Add34~20|dataa
+    Info (332115):     18.799      0.477 FF  CELL  linear|Add34~20|cout
+    Info (332115):     18.799      0.000 FF    IC  linear|Add34~22|cin
+    Info (332115):     18.858      0.059 FR  CELL  linear|Add34~22|cout
+    Info (332115):     18.858      0.000 RR    IC  linear|Add34~24|cin
+    Info (332115):     19.463      0.605 RF  CELL  linear|Add34~24|combout
+    Info (332115):     19.727      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.025      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.266      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.564      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.332      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.463      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.697      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.828      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.828      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.922      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.922
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -16.987 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #18: Setup slack is -16.975 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][7]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][7]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][7]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][7]|q
+    Info (332115):      4.404      0.492 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[7]
+    Info (332115):      7.858      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.858      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.978      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.000      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.524      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.524      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.583      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.583      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.220      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.183      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.689      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.689      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.748      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.748      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.385      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.058      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.564      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.564      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.623      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.623      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.260      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.223      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.747      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.747      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.806      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.806      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     16.443      0.637 RR  CELL  linear|Add11~18|combout
+    Info (332115):     16.836      0.393 RR    IC  linear|Add19~18|datab
+    Info (332115):     17.360      0.524 RF  CELL  linear|Add19~18|cout
+    Info (332115):     17.360      0.000 FF    IC  linear|Add19~20|cin
+    Info (332115):     17.862      0.502 FF  CELL  linear|Add19~20|combout
+    Info (332115):     18.310      0.448 FF    IC  linear|Add34~20|dataa
+    Info (332115):     18.787      0.477 FF  CELL  linear|Add34~20|cout
+    Info (332115):     18.787      0.000 FF    IC  linear|Add34~22|cin
+    Info (332115):     18.846      0.059 FR  CELL  linear|Add34~22|cout
+    Info (332115):     18.846      0.000 RR    IC  linear|Add34~24|cin
+    Info (332115):     19.451      0.605 RF  CELL  linear|Add34~24|combout
+    Info (332115):     19.715      0.264 FF    IC  linear|LessThan32~1|datac
+    Info (332115):     20.013      0.298 FF  CELL  linear|LessThan32~1|combout
+    Info (332115):     20.254      0.241 FF    IC  linear|LessThan32~2|datac
+    Info (332115):     20.552      0.298 FF  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.320      0.768 FF    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.451      0.131 FF  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.685      0.234 FF    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.816      0.131 FF  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.816      0.000 FF    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.910      0.094 FF  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.910
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -16.975 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #19: Setup slack is -16.972 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][0]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][0]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][0]|q
+    Info (332115):      4.416      0.504 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[0]
+    Info (332115):      7.870      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.870      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.990      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.012      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.536      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.536      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.595      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.595      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.232      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.195      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.701      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.701      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.760      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.760      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.397      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.070      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.576      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.576      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.635      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.635      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     14.272      0.637 RR  CELL  linear|Add15~14|combout
+    Info (332115):     15.235      0.963 RR    IC  linear|Add11~14|datab
+    Info (332115):     15.759      0.524 RF  CELL  linear|Add11~14|cout
+    Info (332115):     15.759      0.000 FF    IC  linear|Add11~16|cin
+    Info (332115):     15.818      0.059 FR  CELL  linear|Add11~16|cout
+    Info (332115):     15.818      0.000 RR    IC  linear|Add11~18|cin
+    Info (332115):     15.877      0.059 RF  CELL  linear|Add11~18|cout
+    Info (332115):     15.877      0.000 FF    IC  linear|Add11~20|cin
+    Info (332115):     15.936      0.059 FR  CELL  linear|Add11~20|cout
+    Info (332115):     15.936      0.000 RR    IC  linear|Add11~22|cin
+    Info (332115):     16.573      0.637 RR  CELL  linear|Add11~22|combout
+    Info (332115):     17.019      0.446 RR    IC  linear|Add19~22|dataa
+    Info (332115):     17.525      0.506 RF  CELL  linear|Add19~22|cout
+    Info (332115):     17.525      0.000 FF    IC  linear|Add19~24|cin
+    Info (332115):     17.584      0.059 FR  CELL  linear|Add19~24|cout
+    Info (332115):     17.584      0.000 RR    IC  linear|Add19~26|cin
+    Info (332115):     18.221      0.637 RR  CELL  linear|Add19~26|combout
+    Info (332115):     18.623      0.402 RR    IC  linear|Add34~26|datab
+    Info (332115):     19.147      0.524 RF  CELL  linear|Add34~26|cout
+    Info (332115):     19.147      0.000 FF    IC  linear|Add34~28|cin
+    Info (332115):     19.206      0.059 FR  CELL  linear|Add34~28|cout
+    Info (332115):     19.206      0.000 RR    IC  linear|Add34~30|cin
+    Info (332115):     19.843      0.637 RR  CELL  linear|Add34~30|combout
+    Info (332115):     20.100      0.257 RR    IC  linear|LessThan32~2|dataa
+    Info (332115):     20.522      0.422 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.283      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.449      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.652      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.818      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.818      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.907      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.907
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -16.972 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #20: Setup slack is -16.971 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : linear:linear|in_vec[10][0]
+    Info (332115): To Node      : linear:linear|lin_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.195      1.593 RR    IC  linear|in_vec[10][0]|clk
+    Info (332115):      3.705      0.510 RR  CELL  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.207     uTco  linear:linear|in_vec[10][0]
+    Info (332115):      3.912      0.000 FF  CELL  linear|in_vec[10][0]|q
+    Info (332115):      4.416      0.504 FF    IC  linear|Mult11|auto_generated|mac_mult1|dataa[0]
+    Info (332115):      7.870      3.454 FR  CELL  linear|Mult11|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.870      0.000 RR    IC  linear|Mult11|auto_generated|mac_out2|dataa[2]
+    Info (332115):      7.990      0.120 RR  CELL  linear|Mult11|auto_generated|mac_out2|dataout[2]
+    Info (332115):      9.012      1.022 RR    IC  linear|Add12~2|datab
+    Info (332115):      9.536      0.524 RF  CELL  linear|Add12~2|cout
+    Info (332115):      9.536      0.000 FF    IC  linear|Add12~4|cin
+    Info (332115):      9.595      0.059 FR  CELL  linear|Add12~4|cout
+    Info (332115):      9.595      0.000 RR    IC  linear|Add12~6|cin
+    Info (332115):     10.232      0.637 RR  CELL  linear|Add12~6|combout
+    Info (332115):     11.195      0.963 RR    IC  linear|Add13~6|dataa
+    Info (332115):     11.701      0.506 RF  CELL  linear|Add13~6|cout
+    Info (332115):     11.701      0.000 FF    IC  linear|Add13~8|cin
+    Info (332115):     11.760      0.059 FR  CELL  linear|Add13~8|cout
+    Info (332115):     11.760      0.000 RR    IC  linear|Add13~10|cin
+    Info (332115):     12.397      0.637 RR  CELL  linear|Add13~10|combout
+    Info (332115):     13.070      0.673 RR    IC  linear|Add15~10|dataa
+    Info (332115):     13.576      0.506 RF  CELL  linear|Add15~10|cout
+    Info (332115):     13.576      0.000 FF    IC  linear|Add15~12|cin
+    Info (332115):     13.635      0.059 FR  CELL  linear|Add15~12|cout
+    Info (332115):     13.635      0.000 RR    IC  linear|Add15~14|cin
+    Info (332115):     13.694      0.059 RF  CELL  linear|Add15~14|cout
+    Info (332115):     13.694      0.000 FF    IC  linear|Add15~16|cin
+    Info (332115):     13.753      0.059 FR  CELL  linear|Add15~16|cout
+    Info (332115):     13.753      0.000 RR    IC  linear|Add15~18|cin
+    Info (332115):     14.390      0.637 RR  CELL  linear|Add15~18|combout
+    Info (332115):     15.370      0.980 RR    IC  linear|Add11~18|dataa
+    Info (332115):     15.876      0.506 RF  CELL  linear|Add11~18|cout
+    Info (332115):     15.876      0.000 FF    IC  linear|Add11~20|cin
+    Info (332115):     15.935      0.059 FR  CELL  linear|Add11~20|cout
+    Info (332115):     15.935      0.000 RR    IC  linear|Add11~22|cin
+    Info (332115):     16.572      0.637 RR  CELL  linear|Add11~22|combout
+    Info (332115):     17.018      0.446 RR    IC  linear|Add19~22|dataa
+    Info (332115):     17.524      0.506 RF  CELL  linear|Add19~22|cout
+    Info (332115):     17.524      0.000 FF    IC  linear|Add19~24|cin
+    Info (332115):     17.583      0.059 FR  CELL  linear|Add19~24|cout
+    Info (332115):     17.583      0.000 RR    IC  linear|Add19~26|cin
+    Info (332115):     18.220      0.637 RR  CELL  linear|Add19~26|combout
+    Info (332115):     18.622      0.402 RR    IC  linear|Add34~26|datab
+    Info (332115):     19.146      0.524 RF  CELL  linear|Add34~26|cout
+    Info (332115):     19.146      0.000 FF    IC  linear|Add34~28|cin
+    Info (332115):     19.205      0.059 FR  CELL  linear|Add34~28|cout
+    Info (332115):     19.205      0.000 RR    IC  linear|Add34~30|cin
+    Info (332115):     19.842      0.637 RR  CELL  linear|Add34~30|combout
+    Info (332115):     20.099      0.257 RR    IC  linear|LessThan32~2|dataa
+    Info (332115):     20.521      0.422 RR  CELL  linear|LessThan32~2|combout
+    Info (332115):     21.282      0.761 RR    IC  linear|lin_out_val_ps[0]~0|datad
+    Info (332115):     21.448      0.166 RR  CELL  linear|lin_out_val_ps[0]~0|combout
+    Info (332115):     21.651      0.203 RR    IC  linear|lin_out_val_ps[0]~1|datad
+    Info (332115):     21.817      0.166 RR  CELL  linear|lin_out_val_ps[0]~1|combout
+    Info (332115):     21.817      0.000 RR    IC  linear|lin_out_val[0]|d
+    Info (332115):     21.906      0.089 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.430      1.864 RR    IC  linear|lin_out_val[0]|clk
+    Info (332115):      4.905      0.475 RR  CELL  linear:linear|lin_out_val[0]
+    Info (332115):      4.942      0.037           clock pessimism removed
+    Info (332115):      4.922     -0.020           clock uncertainty
+    Info (332115):      4.935      0.013     uTsu  linear:linear|lin_out_val[0]
+    Info (332115): Data Arrival Time  :    21.906
+    Info (332115): Data Required Time :     4.935
+    Info (332115): Slack              :   -16.971 (VIOLATED)
+    Info (332115): ===================================================================
+Info (23030): Evaluation of Tcl script /data/project/tsmc65/shared/qsyn/util/report_worst.tcl was successful
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 704 megabytes
+    Info: Processing ended: Thu Jun 11 21:36:16 2026
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01

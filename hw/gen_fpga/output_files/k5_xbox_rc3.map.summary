@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Thu Jun 25 14:17:38 2026
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : k5_xbox_rc3
+Top-level Entity Name : de10lite_wrap
+Family : MAX 10
+Total logic elements : 19,954
+    Total combinational functions : 17,419
+    Dedicated logic registers : 4,688
+Total registers : 4688
+Total pins : 185
+Total virtual pins : 0
+Total memory bits : 1,327,608
+Embedded Multiplier 9-bit elements : 62
+Total PLLs : 1
+UFM blocks : 0
+ADC blocks : 0

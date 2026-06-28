@@ -1,0 +1,18 @@
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|k5_sys:k5_sys|k5_sys_access:k5_sys_access|k5_uart_access:k5_uart_access|uart_tx:uart_tx_i|CS
+Name CS.STOP_BIT_LAST CS.STOP_BIT_FIRST CS.PARITY CS.DATA CS.START_BIT CS.IDLE 
+CS.IDLE 0 0 0 0 0 0 
+CS.START_BIT 0 0 0 0 1 1 
+CS.DATA 0 0 0 1 0 1 
+CS.PARITY 0 0 1 0 0 1 
+CS.STOP_BIT_FIRST 0 1 0 0 0 1 
+CS.STOP_BIT_LAST 1 0 0 0 0 1 
+
+State Machine - |de10lite_wrap|k5_xbox_sys:k5_xbox_sys|k5_sys:k5_sys|k5_sys_access:k5_sys_access|k5_uart_access:k5_uart_access|uart_rx:uart_rx_i|CS
+Name CS.STOP_BIT CS.PARITY CS.SAVE_DATA CS.DATA CS.START_BIT CS.IDLE 
+CS.IDLE 0 0 0 0 0 0 
+CS.START_BIT 0 0 0 0 1 1 
+CS.DATA 0 0 0 1 0 1 
+CS.SAVE_DATA 0 0 1 0 0 1 
+CS.PARITY 0 1 0 0 0 1 
+CS.STOP_BIT 1 0 0 0 0 1 

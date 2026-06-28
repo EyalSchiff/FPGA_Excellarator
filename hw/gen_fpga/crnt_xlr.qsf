@@ -1,0 +1,16 @@
+set_global_assignment -name SEARCH_PATH /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx_def_pkg.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx_regs_intrf.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/xmem_intrf_mux.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv
+set_global_assignment -name VERILOG_MACRO "CRNT_XLR=slrx"
