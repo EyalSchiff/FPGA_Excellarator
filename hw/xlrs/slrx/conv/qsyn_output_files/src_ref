@@ -9,14 +9,13 @@ module conv (
   mem_intf_write.client_write mem_intf_write
 );
 
-  localparam DIM_MAX_SIZE       = 32;
-  localparam KERNEL_DIM         = 5;
-  localparam KERNEL_SIZE        = KERNEL_DIM*KERNEL_DIM;
+  localparam DIM_MAX_SIZE = 32;
+  localparam KERNEL_DIM = 5;
+  localparam KERNEL_SIZE = KERNEL_DIM*KERNEL_DIM;
   localparam MAX_DOT_PROD_WIDTH = 16+$clog2(KERNEL_SIZE);
-  localparam ARR_IDX_W          = $clog2(DIM_MAX_SIZE);
+  localparam ARR_IDX_W = $clog2(DIM_MAX_SIZE);
 
-  // States: IDLE -> READ_KERNEL -> READ_ROWS -> CALC -> WRITE -> (loop cols) -> DONE
-  enum { IDLE, READ_KERNEL, READ_ROWS, CALC, WRITE, DONE } next_state, state;
+  enum {IDLE, READ_KERNEL, READ_ROWS, CALC, WRITE, DONE} next_state, state;
 
   logic conv_start, conv_done, clear_done_on_read;
 
@@ -24,21 +23,21 @@ module conv (
   logic [KERNEL_DIM-1:0][DIM_MAX_SIZE-1:0][7:0] conv_rows_buf, conv_rows_buf_ps;
 
   logic [XMEM_ADDR_WIDTH-1:0] conv_kernel_addr, conv_arr_in_addr, conv_arr_out_addr;
-  logic [XMEM_ADDR_WIDTH-1:0] conv_rslt_out_addr, conv_rslt_out_addr_ps;
   logic [XMEM_ADDR_WIDTH-1:0] arr_in_row_addr, arr_in_row_addr_ps;
 
   logic [MAX_DOT_PROD_WIDTH-1:0] conv_bias_val;
   logic [ARR_IDX_W:0] conv_arr_in_dim, conv_arr_out_dim;
-  logic [ARR_IDX_W-1:0] conv_out_row_idx;
+  logic [ARR_IDX_W-1:0] conv_out_row_idx, conv_out_col_idx;
   logic [ARR_IDX_W-1:0] buf_load_row_idx, buf_load_row_idx_ps;
   logic is_last_load_row, conv_active;
 
-  // Column loop counter — new!
-  logic [ARR_IDX_W-1:0] col_idx, col_idx_ps;
-  logic is_last_col;
+  logic [ARR_IDX_W-1:0] cached_row_idx, cached_row_idx_ps;
+  logic rows_valid, rows_valid_ps;
 
-  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] conv_win;
-  logic [7:0] conv_out_val, conv_out_val_ps;
+  logic [ARR_IDX_W-1:0] loop_col_idx, loop_col_idx_ps;
+
+  logic [3:0][7:0] pe_out;       // 4 parallel computed outputs, combinational
+  logic [3:0][7:0] write_buf, write_buf_ps; // registered/captured for the write
 
   slrx_cmd_t slrx_cmd;
 
@@ -54,54 +53,75 @@ module conv (
   assign conv_arr_out_addr = slrx_regs_intrf.host_regs[ARR_OUT_ADDR_RI];
   assign conv_arr_in_dim   = slrx_regs_intrf.host_regs[ARR_IN_DIM_RI];
   assign conv_out_row_idx  = slrx_regs_intrf.host_regs[OUT_ROW_IDX_RI];
-
+  assign conv_out_col_idx  = slrx_regs_intrf.host_regs[OUT_COL_IDX_RI];
   assign conv_arr_out_dim  = conv_arr_in_dim - (KERNEL_DIM - 1);
   assign is_last_load_row  = (buf_load_row_idx == (KERNEL_DIM - 1));
-  assign is_last_col       = (col_idx == conv_arr_out_dim - 1);
 
-  // Output address: base + row*out_dim + current_col
-  assign conv_rslt_out_addr_ps = conv_arr_out_addr +
-                                 (conv_out_row_idx * conv_arr_out_dim) +
-                                 col_idx;
+  // single-window dot product, combinational
+  function automatic logic [7:0] dot_one(input [ARR_IDX_W-1:0] col_off);
+    logic signed [MAX_DOT_PROD_WIDTH-1:0] acc;
+    logic signed [MAX_DOT_PROD_WIDTH-1:0] shifted;
+    begin
+      acc = conv_bias_val;
+      for (int i = 0; i < KERNEL_DIM; i++)
+        for (int j = 0; j < KERNEL_DIM; j++)
+          acc = acc + ($signed({1'b0, conv_rows_buf[i][col_off+j]}) * $signed(kernel[i][j]));
+      if (acc < 0) dot_one = 8'd0;
+      else begin
+        shifted = acc >>> 8;
+        dot_one = (shifted > 255) ? 8'd255 : shifted[7:0];
+      end
+    end
+  endfunction
 
-  // Extract 5x5 window starting at current col_idx — pure combinational
+  // 4 parallel PEs computed every cycle from current loop_col_idx (combinational)
   always_comb begin
-    for (int i = 0; i < KERNEL_DIM; i++)
-      for (int j = 0; j < KERNEL_DIM; j++)
-        conv_win[i][j] = conv_rows_buf[i][col_idx + j];
+    for (int p = 0; p < 4; p++) begin
+      if ((loop_col_idx + p) <= (conv_arr_out_dim - 1))
+        pe_out[p] = dot_one(loop_col_idx + p);
+      else
+        pe_out[p] = 8'd0;
+    end
   end
 
-  // Compute output value — pure combinational
-  assign conv_out_val_ps = calc_conv_win(kernel, conv_bias_val, conv_win);
-
   always_comb begin
-    next_state          = state;
+    next_state = state;
     mem_intf_read.mem_size_bytes  = 0;
     mem_intf_read.mem_start_addr  = 0;
     mem_intf_read.mem_req         = 0;
-    mem_intf_write.mem_size_bytes = 1;
-    mem_intf_write.mem_data       = conv_out_val;
-    mem_intf_write.mem_start_addr = conv_rslt_out_addr;
+    mem_intf_write.mem_size_bytes = 4;
+    mem_intf_write.mem_data       = write_buf;
+    mem_intf_write.mem_start_addr = conv_arr_out_addr + (conv_out_row_idx * conv_arr_out_dim) + loop_col_idx;
     mem_intf_write.mem_req        = 0;
-    conv_done                     = 0;
-    buf_load_row_idx_ps           = buf_load_row_idx;
-    conv_rows_buf_ps              = conv_rows_buf;
-    arr_in_row_addr_ps            = arr_in_row_addr;
-    kernel_ps                     = kernel;
-    col_idx_ps                    = col_idx;
+    conv_done = 0;
+
+    buf_load_row_idx_ps = buf_load_row_idx;
+    conv_rows_buf_ps    = conv_rows_buf;
+    arr_in_row_addr_ps  = arr_in_row_addr;
+    kernel_ps            = kernel;
+    cached_row_idx_ps    = cached_row_idx;
+    rows_valid_ps        = rows_valid;
+    loop_col_idx_ps       = loop_col_idx;
+    write_buf_ps          = write_buf;
 
     case (state)
-
-      IDLE: if (conv_start) begin
-        if (slrx_cmd == CONV_SETUP)
-          next_state = READ_KERNEL;
-        else if (slrx_cmd == CONV_WINDOW) begin
-          next_state         = READ_ROWS;
-          arr_in_row_addr_ps = conv_arr_in_addr + (conv_out_row_idx * conv_arr_in_dim);
-          col_idx_ps         = 0;
+      IDLE:
+        if (conv_start) begin
+          if (slrx_cmd == CONV_SETUP) begin
+            next_state    = READ_KERNEL;
+            rows_valid_ps = 1'b0;
+          end
+          else if (slrx_cmd == CONV_WINDOW) begin
+            loop_col_idx_ps = conv_out_col_idx;
+            if (rows_valid && (conv_out_row_idx == cached_row_idx)) begin
+              next_state = CALC;
+            end else begin
+              next_state          = READ_ROWS;
+              arr_in_row_addr_ps  = conv_arr_in_addr + (conv_out_row_idx * conv_arr_in_dim);
+              buf_load_row_idx_ps = 0;
+            end
+          end
         end
-        buf_load_row_idx_ps = 0;
-      end
 
       READ_KERNEL: begin
         mem_intf_read.mem_req        = 1;
@@ -117,31 +137,36 @@ module conv (
         mem_intf_read.mem_req        = 1;
         mem_intf_read.mem_start_addr = arr_in_row_addr;
         mem_intf_read.mem_size_bytes = DIM_MAX_SIZE;
-        arr_in_row_addr_ps           = arr_in_row_addr + conv_arr_in_dim;
+        arr_in_row_addr_ps = arr_in_row_addr + conv_arr_in_dim;
         if (mem_intf_read.mem_valid) begin
           conv_rows_buf_ps[buf_load_row_idx] = mem_intf_read.mem_data;
           if (is_last_load_row) begin
             next_state            = CALC;
             mem_intf_read.mem_req = 0;
+            cached_row_idx_ps     = conv_out_row_idx;
+            rows_valid_ps         = 1'b1;
           end else begin
-            buf_load_row_idx_ps = buf_load_row_idx + 1;
+            mem_intf_read.mem_start_addr = arr_in_row_addr;
+            buf_load_row_idx_ps          = buf_load_row_idx + 1;
           end
         end
       end
 
-      // CALC: window and output value are computed combinationally
-      // just wait one cycle for registers to settle
-      CALC: next_state = WRITE;
+      // Capture the 4 combinational PE outputs into the write buffer
+      CALC: begin
+        write_buf_ps = pe_out;
+        next_state   = WRITE;
+      end
 
       WRITE: begin
         mem_intf_write.mem_req = 1;
         if (mem_intf_write.mem_ack) begin
           mem_intf_write.mem_req = 0;
-          if (is_last_col)
-            next_state = DONE;      // finished all columns -> notify SW
-          else begin
-            col_idx_ps = col_idx + 1; // slide window right
-            next_state = CALC;        // compute next column
+          if ((loop_col_idx + 4) >= conv_arr_out_dim) begin
+            next_state = DONE;
+          end else begin
+            loop_col_idx_ps = loop_col_idx + 4;
+            next_state      = CALC;
           end
         end
       end
@@ -150,7 +175,6 @@ module conv (
         conv_done = 1;
         if (clear_done_on_read) next_state = IDLE;
       end
-
     endcase
   end
 
@@ -161,39 +185,21 @@ module conv (
       buf_load_row_idx   <= 0;
       kernel             <= 0;
       conv_rows_buf      <= 0;
-      conv_out_val       <= 0;
-      conv_rslt_out_addr <= 0;
-      col_idx            <= 0;
+      cached_row_idx     <= 0;
+      rows_valid         <= 1'b0;
+      loop_col_idx        <= 0;
+      write_buf            <= 0;
     end else begin
       state              <= next_state;
       arr_in_row_addr    <= arr_in_row_addr_ps;
       buf_load_row_idx   <= buf_load_row_idx_ps;
       kernel             <= kernel_ps;
       conv_rows_buf      <= conv_rows_buf_ps;
-      conv_out_val       <= conv_out_val_ps;
-      conv_rslt_out_addr <= conv_rslt_out_addr_ps;
-      col_idx            <= col_idx_ps;
+      cached_row_idx     <= cached_row_idx_ps;
+      rows_valid         <= rows_valid_ps;
+      loop_col_idx        <= loop_col_idx_ps;
+      write_buf            <= write_buf_ps;
     end
   end
-
-  function automatic logic [7:0] calc_conv_win;
-    input [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel;
-    input signed [MAX_DOT_PROD_WIDTH-1:0]        conv_bias_val;
-    input [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] conv_win;
-    logic signed [MAX_DOT_PROD_WIDTH-1:0] acc;
-    logic signed [MAX_DOT_PROD_WIDTH-1:0] shifted;
-    logic [7:0] result;
-    begin
-      acc = conv_bias_val;
-      for (int i = 0; i < KERNEL_DIM; i++)
-        for (int j = 0; j < KERNEL_DIM; j++)
-          acc = acc + ($signed(kernel[i][j]) * $signed({1'b0, conv_win[i][j]}));
-      shifted = acc >>> 7;
-      if (shifted[MAX_DOT_PROD_WIDTH-1]) result = 8'd0;
-      else if (shifted > 255) result = 8'd255;
-      else result = shifted[7:0];
-      calc_conv_win = result;
-    end
-  endfunction
 
 endmodule

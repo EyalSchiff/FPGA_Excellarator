@@ -1,16 +1,16 @@
-Analysis & Synthesis Status : Successful - Thu Jun 25 11:42:58 2026
+Analysis & Synthesis Status : Successful - Tue Jun 30 13:51:13 2026
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : slrx
 Top-level Entity Name : qsyn_dummy_xlr_wrap
 Family : MAX 10
-Total logic elements : 2,966
-    Total combinational functions : 2,124
-    Dedicated logic registers : 1,607
-Total registers : 1607
+Total logic elements : 7,942
+    Total combinational functions : 5,595
+    Dedicated logic registers : 3,366
+Total registers : 3366
 Total pins : 120
 Total virtual pins : 0
 Total memory bits : 0
-Embedded Multiplier 9-bit elements : 35
+Embedded Multiplier 9-bit elements : 62
 Total PLLs : 0
 UFM blocks : 0
 ADC blocks : 0

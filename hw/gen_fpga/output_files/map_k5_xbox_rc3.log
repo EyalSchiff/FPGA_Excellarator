@@ -15,7 +15,7 @@ Info: Running Quartus Prime Analysis & Synthesis
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Thu Jun 25 14:16:28 2026
+    Info: Processing started: Tue Jun 30 12:56:45 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off k5_xbox_rc3 -c k5_xbox_rc3
 Info (125061): Changed top-level design entity name to "de10lite_wrap"
 Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/linux64/assignment_defaults.qdf
@@ -163,7 +163,7 @@ Info (12021): Found 1 design units, including 0 entities, in source file /data/p
 Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx_regs_intrf.sv
     Info (12023): Found entity 1: slrx_regs_intrf File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx_regs_intrf.sv Line: 4
 Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv
-    Info (12023): Found entity 1: conv File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 4
+    Info (12023): Found entity 1: conv File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 14
 Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv
     Info (12023): Found entity 1: pool File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv
@@ -176,6 +176,7 @@ Warning (10236): Verilog HDL Implicit Net warning at mag_m1_32x32_r66.v(3347): c
 Warning (10236): Verilog HDL Implicit Net warning at mag_m1_32x32_r66.v(3351): created implicit net for "m0_b32" File: /project/tsmc65/shared/k5_share/kuntz5/src/mul/mag_mul/gen/mag_m1_32x32_r66.v Line: 3351
 Warning (10236): Verilog HDL Implicit Net warning at k5_uart_access.sv(226): created implicit net for "pending_trig" File: /project/tsmc65/shared/k5_share/kuntz5/src/uart_access/k5_uart_access.sv Line: 226
 Warning (10236): Verilog HDL Implicit Net warning at xbox.sv(50): created implicit net for "is_xbox_xmem_addr" File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox.sv Line: 50
+Warning (10236): Verilog HDL Implicit Net warning at conv.sv(129): created implicit net for "slrx_cmd" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 129
 Warning (10236): Verilog HDL Implicit Net warning at slrx.sv(32): created implicit net for "acc_sel" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv Line: 32
 Warning (10222): Verilog HDL Parameter Declaration warning at mem_req_ctrl.sv(79): Parameter Declaration in module "mem_req_ctrl" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_req_ctrl.sv Line: 79
 Warning (10222): Verilog HDL Parameter Declaration warning at mem_req_ctrl.sv(80): Parameter Declaration in module "mem_req_ctrl" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_req_ctrl.sv Line: 80
@@ -479,24 +480,26 @@ Warning (10230): Verilog HDL assignment warning at slrx.sv(32): truncated value 
 Info (12128): Elaborating entity "slrx_regs_intrf" for hierarchy "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|slrx_regs_intrf:slrx_regs_intrf_conv" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv Line: 24
 Warning (12158): Entity "slrx_regs_intrf" contains only dangling pins File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv Line: 24
 Info (12128): Elaborating entity "conv" for hierarchy "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv Line: 126
-Warning (10230): Verilog HDL assignment warning at conv.sv(40): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 40
-Warning (10230): Verilog HDL assignment warning at conv.sv(42): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 42
-Warning (10230): Verilog HDL assignment warning at conv.sv(43): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 43
-Warning (10230): Verilog HDL assignment warning at conv.sv(44): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 44
-Warning (10230): Verilog HDL assignment warning at conv.sv(45): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 45
-Warning (10230): Verilog HDL assignment warning at conv.sv(46): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 46
-Warning (10230): Verilog HDL assignment warning at conv.sv(47): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 47
-Warning (10230): Verilog HDL assignment warning at conv.sv(78): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 78
-Warning (10230): Verilog HDL assignment warning at conv.sv(89): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 89
-Warning (10230): Verilog HDL assignment warning at conv.sv(98): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 98
+Warning (10230): Verilog HDL assignment warning at conv.sv(129): truncated value with size 32 to match size of target (1) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 129
+Warning (10230): Verilog HDL assignment warning at conv.sv(135): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 135
+Warning (10230): Verilog HDL assignment warning at conv.sv(137): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 137
+Warning (10230): Verilog HDL assignment warning at conv.sv(138): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 138
+Warning (10230): Verilog HDL assignment warning at conv.sv(139): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 139
+Warning (10230): Verilog HDL assignment warning at conv.sv(140): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 140
+Warning (10230): Verilog HDL assignment warning at conv.sv(141): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 141
+Warning (10230): Verilog HDL assignment warning at conv.sv(143): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 143
+Warning (10230): Verilog HDL assignment warning at conv.sv(207): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 207
+Warning (10230): Verilog HDL assignment warning at conv.sv(219): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 219
+Warning (10230): Verilog HDL assignment warning at conv.sv(234): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 234
+Warning (10230): Verilog HDL assignment warning at conv.sv(255): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 255
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "calc_conv_win.kernel" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "calc_conv_win.conv_win" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "kernel" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "kernel_ps" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_rows_buf" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_rows_buf_ps" into its bus
-Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_win" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_win_ps" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_win" into its bus
 Info (12128): Elaborating entity "pool" for hierarchy "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|pool:pool" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv Line: 152
 Warning (10036): Verilog HDL or VHDL warning at pool.sv(39): object "arr_in_next_row_addr_s" assigned a value but never read File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv Line: 39
 Warning (10230): Verilog HDL assignment warning at pool.sv(58): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv Line: 58
@@ -651,21 +654,21 @@ Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
         Warning (14320): Synthesized away node "k5_xbox_sys:k5_xbox_sys|k5_sys:k5_sys|k5_confmem:k5_confimem|k5_dpram:dpram|altera_dpram_8x32:dpram_8x32.altera_dpram_8x32_inst|altsyncram:altsyncram_component|altsyncram_pbs1:auto_generated|q_b[16]" File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/gen_fpga/db/altsyncram_pbs1.tdf Line: 536
 Info (278001): Inferred 62 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 71
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 197
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 102
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|pool:pool|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv Line: 91
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|pool:pool|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv Line: 83
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 49
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 150
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult25" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult24" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult23" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult22" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult21" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult20" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult19" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult25" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult24" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult23" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult22" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult21" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult20" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult19" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult32" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult25" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult24" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
@@ -681,22 +684,22 @@ Info (278001): Inferred 62 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult28" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult27" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult10" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult9" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult8" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult7" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult6" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult5" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult4" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult3" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult18" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult17" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult16" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult15" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult14" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult13" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult12" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult11" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult10" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult9" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult8" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult7" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult6" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult5" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult4" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult3" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult18" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult17" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult16" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult15" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult14" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult13" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult12" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|Mult11" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult9" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult8" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult7" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
@@ -713,8 +716,8 @@ Info (278001): Inferred 62 megafunctions from design logic
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult12" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult11" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
     Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|Mult10" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
-Info (12130): Elaborated megafunction instantiation "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 71
-Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 71
+Info (12130): Elaborated megafunction instantiation "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 197
+Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 197
     Info (12134): Parameter "LPM_WIDTHA" = "5"
     Info (12134): Parameter "LPM_WIDTHB" = "6"
     Info (12134): Parameter "LPM_WIDTHP" = "11"
@@ -752,10 +755,10 @@ Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_kks.tdf
     Info (12023): Found entity 1: mult_kks File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/gen_fpga/db/mult_kks.tdf Line: 29
-Info (12130): Elaborated megafunction instantiation "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult2" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
-    Info (12134): Parameter "LPM_WIDTHA" = "8"
-    Info (12134): Parameter "LPM_WIDTHB" = "9"
+Info (12130): Elaborated megafunction instantiation "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|conv:conv|lpm_mult:Mult2" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 339
+    Info (12134): Parameter "LPM_WIDTHA" = "9"
+    Info (12134): Parameter "LPM_WIDTHB" = "8"
     Info (12134): Parameter "LPM_WIDTHP" = "17"
     Info (12134): Parameter "LPM_WIDTHR" = "17"
     Info (12134): Parameter "LPM_WIDTHS" = "1"
@@ -765,6 +768,19 @@ Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_vds.tdf
     Info (12023): Found entity 1: mult_vds File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/gen_fpga/db/mult_vds.tdf Line: 29
+Info (12130): Elaborated megafunction instantiation "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|lpm_mult:Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
+Info (12133): Instantiated megafunction "k5_xbox_sys:k5_xbox_sys|xbox:xbox|xbox_xlr_wrap:xbox_xlr_wrap|slrx:slrx|linear:linear|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/linear/linear.sv Line: 223
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "9"
+    Info (12134): Parameter "LPM_WIDTHP" = "17"
+    Info (12134): Parameter "LPM_WIDTHR" = "17"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_0es.tdf
+    Info (12023): Found entity 1: mult_0es File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/gen_fpga/db/mult_0es.tdf Line: 29
 Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "GPIO[33]" and its non-tri-state driver. File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 63
@@ -830,16 +846,16 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[1]" File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 34
     Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 51
     Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 51
-Info (21057): Implemented 21641 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 21674 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 97 output pins
     Info (21060): Implemented 71 bidirectional pins
-    Info (21061): Implemented 20626 logic cells
+    Info (21061): Implemented 20659 logic cells
     Info (21064): Implemented 767 RAM segments
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 62 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 281 warnings
-    Info: Peak virtual memory: 806 megabytes
-    Info: Processing ended: Thu Jun 25 14:17:38 2026
-    Info: Elapsed time: 00:01:10
-    Info: Total CPU time (on all processors): 00:01:09
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 284 warnings
+    Info: Peak virtual memory: 807 megabytes
+    Info: Processing ended: Tue Jun 30 12:58:00 2026
+    Info: Elapsed time: 00:01:15
+    Info: Total CPU time (on all processors): 00:01:16

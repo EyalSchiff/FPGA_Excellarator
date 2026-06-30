@@ -17,7 +17,7 @@ Info: Running Quartus Prime Fitter
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Thu Jun 25 14:17:40 2026
+    Info: Processing started: Tue Jun 30 12:58:01 2026
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off k5_xbox_rc3 -c k5_xbox_rc3
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = k5_xbox_rc3
@@ -114,26 +114,26 @@ Info (176215): I/O bank details before I/O pin placement
         Info (176213): I/O bank number 6 does not use VREF pins and has 3.3V VCCIO pins. 40 total pin(s) used --  20 pins available
         Info (176213): I/O bank number 7 does not use VREF pins and has 3.3V VCCIO pins. 41 total pin(s) used --  11 pins available
         Info (176213): I/O bank number 8 does not use VREF pins and has undetermined VCCIO pins. 4 total pin(s) used --  32 pins available
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:14
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:15
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
-Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:11
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:12
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:01:49
+Info (170192): Fitter placement operations ending: elapsed time is 00:01:53
 Info (170193): Fitter routing operations beginning
-Info (170195): Router estimated average interconnect usage is 17% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 51% of the available device resources in the region that extends from location X22_Y22 to location X32_Y32
+Info (170195): Router estimated average interconnect usage is 16% of the available device resources
+    Info (170196): Router estimated peak interconnect usage is 48% of the available device resources in the region that extends from location X56_Y22 to location X66_Y32
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:44
-Info (11888): Total time spent on timing analysis during the Fitter is 18.26 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:43
+Info (11888): Total time spent on timing analysis during the Fitter is 20.54 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:01:01
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:01:03
 Warning (169177): 87 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing MAX 10 Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
     Info (169178): Pin ADC_CLK_10 uses I/O standard 3.3-V LVTTL at N5 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 8
     Info (169178): Pin KEY[1] uses I/O standard 3.3 V Schmitt Trigger at A7 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 34
@@ -141,7 +141,7 @@ Warning (169177): 87 pins must meet Intel FPGA requirements for 3.3-, 3.0-, and 
     Info (169178): Pin GSENSOR_INT[2] uses I/O standard 3.3-V LVTTL at Y13 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 51
     Info (169178): Pin GSENSOR_SDO uses I/O standard 3.3-V LVTTL at V12 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 54
     Info (169178): Pin ARDUINO_RESET_N uses I/O standard 3.3 V Schmitt Trigger at F16 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 58
-    Info (169178): Pin GPIO[7] uses I/O standard 3.3-V LVTTL at P10 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 63
+    Info (169178): Pin GPIO[7] uses I/O standard 3.3-V LVTTL at U4 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 63
     Info (169178): Pin DRAM_DQ[0] uses I/O standard 3.3-V LVTTL at Y21 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 19
     Info (169178): Pin DRAM_DQ[1] uses I/O standard 3.3-V LVTTL at Y20 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 19
     Info (169178): Pin DRAM_DQ[2] uses I/O standard 3.3-V LVTTL at AA22 File: /project/tsmc65/shared/k5_share/k5_xbox/fpga/src/de10lite_k5_xbox_wrap.sv Line: 19
@@ -297,6 +297,6 @@ Warning (169064): Following 71 pins have no output enable or a GND or VCC output
 Info (144001): Generated suppressed messages file /project/tsmc65/users/ternery/ws/my_k5_proj/hw/gen_fpga/output_files/k5_xbox_rc3.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 6 warnings
     Info: Peak virtual memory: 1186 megabytes
-    Info: Processing ended: Thu Jun 25 14:22:00 2026
-    Info: Elapsed time: 00:04:20
-    Info: Total CPU time (on all processors): 00:04:17
+    Info: Processing ended: Tue Jun 30 13:02:28 2026
+    Info: Elapsed time: 00:04:27
+    Info: Total CPU time (on all processors): 00:04:25

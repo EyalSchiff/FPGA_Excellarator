@@ -15,7 +15,7 @@ Info: Running Quartus Prime Analysis & Synthesis
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Wed Jun 24 16:09:09 2026
+    Info: Processing started: Tue Jun 30 13:38:37 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off conv -c conv
 Info (12021): Found 1 design units, including 0 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
     Info (12022): Found design unit 1: xbox_def_pkg (SystemVerilog) File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv Line: 1
@@ -39,57 +39,131 @@ Warning (12158): Entity "mem_intf_write" contains only dangling pins File: /data
 Info (12128): Elaborating entity "slrx_regs_intrf" for hierarchy "slrx_regs_intrf:slrx_regs_intrf" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 37
 Warning (12158): Entity "slrx_regs_intrf" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 37
 Info (12128): Elaborating entity "conv" for hierarchy "conv:conv" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 75
-Warning (10230): Verilog HDL assignment warning at conv.sv(51): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 51
+Warning (10036): Verilog HDL or VHDL warning at conv.sv(28): object "conv_bias_val" assigned a value but never read File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 28
+Warning (10230): Verilog HDL assignment warning at conv.sv(50): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 50
+Warning (10230): Verilog HDL assignment warning at conv.sv(52): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 52
 Warning (10230): Verilog HDL assignment warning at conv.sv(53): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 53
-Warning (10230): Verilog HDL assignment warning at conv.sv(54): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 54
-Warning (10230): Verilog HDL assignment warning at conv.sv(55): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 55
+Warning (10230): Verilog HDL assignment warning at conv.sv(54): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 54
+Warning (10230): Verilog HDL assignment warning at conv.sv(55): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 55
 Warning (10230): Verilog HDL assignment warning at conv.sv(56): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 56
-Warning (10230): Verilog HDL assignment warning at conv.sv(58): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 58
-Warning (10230): Verilog HDL assignment warning at conv.sv(109): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 109
-Warning (10230): Verilog HDL assignment warning at conv.sv(119): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 119
-Warning (10230): Verilog HDL assignment warning at conv.sv(127): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 127
-Warning (10230): Verilog HDL assignment warning at conv.sv(143): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 143
-Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "calc_conv_win.kernel" into its bus
-Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "calc_conv_win.conv_win" into its bus
+Warning (10230): Verilog HDL assignment warning at conv.sv(57): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 57
+Warning (10230): Verilog HDL assignment warning at conv.sv(129): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 129
+Warning (10230): Verilog HDL assignment warning at conv.sv(139): truncated value with size 32 to match size of target (6) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 139
+Warning (10230): Verilog HDL assignment warning at conv.sv(150): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 150
+Warning (10230): Verilog HDL assignment warning at conv.sv(168): truncated value with size 32 to match size of target (5) File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 168
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "kernel" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "kernel_ps" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_rows_buf" into its bus
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_rows_buf_ps" into its bus
-Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "conv_win" into its bus
 Warning (12161): Node "slrx_regs_intrf:slrx_regs_intrf|slrx_regs_intrf.xlr_start" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/slrx_ref/hw/top/slrx_regs_intrf.sv Line: 4
 Warning (12161): Node "slrx_regs_intrf:slrx_regs_intrf|slrx_regs_intrf.slrx_cmd[2]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/slrx_ref/hw/top/slrx_regs_intrf.sv Line: 4
 Warning (12161): Node "slrx_regs_intrf:slrx_regs_intrf|slrx_regs_intrf.slrx_cmd[1]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/slrx_ref/hw/top/slrx_regs_intrf.sv Line: 4
 Warning (12161): Node "slrx_regs_intrf:slrx_regs_intrf|slrx_regs_intrf.slrx_cmd[0]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/slrx_ref/hw/top/slrx_regs_intrf.sv Line: 4
-Info (278001): Inferred 27 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 100
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 64
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult25" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult24" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult23" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult22" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult21" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult20" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult19" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult18" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult9" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult8" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult7" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult6" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult5" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult4" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult3" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult17" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult16" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult15" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult14" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult13" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult12" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult11" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult10" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-Info (12130): Elaborated megafunction instantiation "conv:conv|lpm_mult:Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 100
-Info (12133): Instantiated megafunction "conv:conv|lpm_mult:Mult26" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 100
+Info (278001): Inferred 102 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult101" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 120
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult100" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 94
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult25" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult50" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult75" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult24" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult23" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult22" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult21" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult20" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult19" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult18" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult17" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult49" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult48" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult47" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult46" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult45" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult44" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult43" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult42" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult74" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult73" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult72" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult71" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult70" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult69" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult68" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult67" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult99" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult98" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult97" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult96" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult95" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult94" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult93" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult92" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult8" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult7" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult6" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult5" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult4" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult3" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult2" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult16" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult15" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult14" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult13" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult12" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult11" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult10" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult9" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult33" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult32" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult31" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult30" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult29" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult28" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult27" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult26" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult41" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult40" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult39" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult38" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult37" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult36" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult35" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult34" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult58" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult57" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult56" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult55" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult54" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult53" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult52" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult51" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult66" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult65" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult64" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult63" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult62" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult61" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult60" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult59" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult83" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult82" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult81" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult80" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult79" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult78" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult77" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult76" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult91" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult90" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult89" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult88" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult87" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult86" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult85" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "conv:conv|Mult84" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+Info (12130): Elaborated megafunction instantiation "conv:conv|lpm_mult:Mult101" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 120
+Info (12133): Instantiated megafunction "conv:conv|lpm_mult:Mult101" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 120
     Info (12134): Parameter "LPM_WIDTHA" = "5"
     Info (12134): Parameter "LPM_WIDTHB" = "6"
     Info (12134): Parameter "LPM_WIDTHP" = "11"
@@ -101,10 +175,10 @@ Info (12133): Instantiated megafunction "conv:conv|lpm_mult:Mult26" with the fol
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_mks.tdf
     Info (12023): Found entity 1: mult_mks File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/db/mult_mks.tdf Line: 29
-Info (12130): Elaborated megafunction instantiation "conv:conv|lpm_mult:Mult1" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-Info (12133): Instantiated megafunction "conv:conv|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 190
-    Info (12134): Parameter "LPM_WIDTHA" = "8"
-    Info (12134): Parameter "LPM_WIDTHB" = "9"
+Info (12130): Elaborated megafunction instantiation "conv:conv|lpm_mult:Mult0" File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+Info (12133): Instantiated megafunction "conv:conv|lpm_mult:Mult0" with the following parameter: File: /data/project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv Line: 68
+    Info (12134): Parameter "LPM_WIDTHA" = "9"
+    Info (12134): Parameter "LPM_WIDTHB" = "8"
     Info (12134): Parameter "LPM_WIDTHP" = "17"
     Info (12134): Parameter "LPM_WIDTHR" = "17"
     Info (12134): Parameter "LPM_WIDTHS" = "1"
@@ -116,32 +190,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/mult
     Info (12023): Found entity 1: mult_vds File: /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/db/mult_vds.tdf Line: 29
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "mem_size_bytes[1]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "mem_size_bytes[2]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
     Warning (13410): Pin "host_regs_valid_out" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 27
-    Warning (13410): Pin "dummy_dout[8]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[9]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[10]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[11]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[12]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[13]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[14]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[15]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[16]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[17]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[18]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[19]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[20]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[21]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[22]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[23]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[24]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[25]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[26]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[27]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[28]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[29]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[30]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
-    Warning (13410): Pin "dummy_dout[31]" is stuck at GND File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 101
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -161,13 +210,13 @@ Warning (21074): Design contains 15 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "host_regs_read_pulse[12]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 28
     Warning (15610): No output dependent on input pin "host_regs_read_pulse[13]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 28
     Warning (15610): No output dependent on input pin "host_regs_read_pulse[14]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_sri.sv Line: 28
-Info (21057): Implemented 5417 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 10714 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 63 input pins
     Info (21059): Implemented 57 output pins
-    Info (21061): Implemented 5270 logic cells
-    Info (21062): Implemented 27 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 61 warnings
-    Info: Peak virtual memory: 656 megabytes
-    Info: Processing ended: Wed Jun 24 16:09:30 2026
-    Info: Elapsed time: 00:00:21
-    Info: Total CPU time (on all processors): 00:00:00
+    Info (21061): Implemented 10492 logic cells
+    Info (21062): Implemented 102 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 38 warnings
+    Info: Peak virtual memory: 681 megabytes
+    Info: Processing ended: Tue Jun 30 13:39:11 2026
+    Info: Elapsed time: 00:00:34
+    Info: Total CPU time (on all processors): 00:00:34

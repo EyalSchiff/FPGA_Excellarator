@@ -67,7 +67,7 @@ module slrx (
    end
    `endif
   
-   xlr_done = slrx_regs_intrf_conv.xlr_done || slrx_regs_intrf_pool.xlr_done || slrx_regs_intrf_lin.xlr_done;
+   xlr_done = (slrx_regs_intrf_conv.xlr_done === 1'b1) || (slrx_regs_intrf_pool.xlr_done === 1'b1) || (slrx_regs_intrf_lin.xlr_done === 1'b1);
    
    if (xlr_done) begin
       host_regs_data_out_ps[XLR_DONE_RI][0] = 1;
@@ -80,7 +80,7 @@ module slrx (
  
    if (host_regs_read_pulse[XLR_DONE_RI]) host_regs_data_out_ps[XLR_DONE_RI][0] = 0;  
    else if (xlr_done) host_regs_data_out_ps[XLR_DONE_RI][0] = 1;     
-   host_regs_valid_out_ps[XLR_DONE_RI] = host_regs_data_out[XLR_DONE_RI][0];     
+   host_regs_valid_out_ps[XLR_DONE_RI] = host_regs_data_out_ps[XLR_DONE_RI][0];     
     
   end // always_comb
  
@@ -191,11 +191,11 @@ module slrx (
     .mem_intf_read          (mem_intf_read.client_read),
     .mem_intf_write         (mem_intf_write.client_write),
  
-    // Pool xmem interface   
+    // Conv xmem interface   
     .mem_intf_read_conv  (mem_intf_read_conv),
     .mem_intf_write_conv (mem_intf_write_conv),
     
-    // Linear xmem interface   
+    // Pool xmem interface   
     .mem_intf_read_pool(mem_intf_read_pool),
     .mem_intf_write_pool(mem_intf_write_pool),
     

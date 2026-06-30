@@ -260,7 +260,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel_xmem",
+					"name" : "sel_word_idx[1]",
 					"strict" : false
 				},
 				{
@@ -268,7 +268,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel_word_idx[1]",
+					"name" : "sel_xmem",
 					"strict" : false
 				},
 				{

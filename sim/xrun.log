@@ -1,5 +1,5 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Jun 24, 2026 at 16:25:07 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jun 30, 2026 at 13:55:35 UTC
 xrun
 	-sv
 	-f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
@@ -93,4 +93,15 @@ xcelium> run
 
  uart_tb.sv: UART TB INFO: DFLT_BAUDRATE = 115200     , CLK_DIV_CNTR =867       
 Waiting for server connection
-uart_tb.sv: 
+uart_tb.sv: PY: Hello from Python, got your message: Hello from System-Verilog!
+uart_tb.sv: Remote Python changed UART clk_div_cntr value to     4 (decimal)
+uart_tb.sv: Remote Python changed UART ns_per_bit_actual from 8680.000000 to 50.000000 
+
+
+ 99569075ns uart_tb.sv: Detected remote quit command. Quitting 
+
+
+Simulation complete via $finish(1) at time 99569075 NS + 1
+/project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s013: Exiting on Jun 30, 2026 at 13:55:56 UTC  (total: 00:00:21)

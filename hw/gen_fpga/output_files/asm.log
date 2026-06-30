@@ -15,7 +15,7 @@ Info: Running Quartus Prime Assembler
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Thu Jun 25 14:22:44 2026
+    Info: Processing started: Tue Jun 30 13:03:14 2026
 Info: Command: quartus_asm k5_xbox_rc3
 Info (125061): Changed top-level design entity name to "de10lite_wrap"
 Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/linux64/assignment_defaults.qdf
@@ -24,6 +24,6 @@ Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 701 megabytes
-    Info: Processing ended: Thu Jun 25 14:22:48 2026
-    Info: Elapsed time: 00:00:04
+    Info: Processing ended: Tue Jun 30 13:03:17 2026
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03

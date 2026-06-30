@@ -1,6 +1,5 @@
 1777825652 /project/tsmc65/shared/k5_share/kuntz5/mems/sim_pseudo_mems/sp_ram_be_simple.sv
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_arbiter.sv
-1780842353 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/xmemcpy_ref/xmemcpy_ref.sv
 1777825829 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_arbiter.sv
 1777825652 /project/tsmc65/shared/k5_share/kuntz5/mems/sim_pseudo_mems/dp_ram_simple.sv
 1777825653 /project/tsmc65/shared/k5_share/kuntz5/src/sys/k5_rmem.sv
@@ -31,10 +30,10 @@
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/k5_xbox_sys.sv
 1777825653 /project/tsmc65/shared/k5_share/kuntz5/src/sys/k5_spram.sv
 1777825653 /project/tsmc65/shared/k5_share/kuntz5/src/sys/k5_tcm.sv
-1782317625 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv
-1777462224 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/xmem_intrf_mux.sv
-1777462224 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv
+1782827405 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/conv/conv.sv
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
+1777462224 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/pool/pool.sv
+1777462224 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/xmem_intrf_mux.sv
 1777825652 /project/tsmc65/shared/k5_share/kuntz5/src/core/k5_core.sv
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_align.sv
 1777825652 /project/tsmc65/shared/k5_share/kuntz5/src/common/k5_pkg.sv
@@ -55,5 +54,5 @@
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm.sv
 1777825653 /project/tsmc65/shared/k5_share/kuntz5/src/uart_access/k5_uart_rx.sv
 1777825828 /project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_mf.v
-1777462224 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv
+1782746675 /project/tsmc65/users/ternery/ws/my_k5_proj/hw/xlrs/slrx/top/slrx.sv
 1777825653 /project/tsmc65/shared/k5_share/kuntz5/src/sys/k5_pcmem.sv

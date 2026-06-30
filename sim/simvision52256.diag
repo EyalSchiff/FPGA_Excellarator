@@ -1,0 +1,325 @@
+*** Message Type: info ***
+When: Mon Jun 29 03:36:42 PM UTC 2026
+SimVision started.
+Version: TOOL:  simvision(64)   23.09-s013
+User: ternery
+Host: ip-10-70-141-50.il-central-1.compute.internal
+Platform: Linux/x86_64/4.18.0-553.77.1.el8_10.x86_64
+Started: Mon Jun 29 03:36:42 PM UTC 2026
+Command: /tools/cadence/XCELIUM/23.09.013/tools.lnx86/simvision/bin/64bit/simvision.exe
+Work Directory: /project/tsmc65/users/ternery/ws/my_k5_proj/sim
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:42 PM UTC 2026
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:43 PM UTC 2026
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:44 PM UTC 2026
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:55 PM UTC 2026
+Create source window: "Source Browser 1"
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:58 PM UTC 2026
+Connect to Simulator
+      Design: worklib.k5_tb:sv
+   Languages: verilog
+   Simulator: Xcelium ppe
+     Version: TOOL:      ippe(64)        23.09-s013
+        User: ternery
+        Host: ip-10-70-141-50.il-central-1.compute.internal
+Time Started: Mon Jun 29 03:36:56 PM UTC 2026
+  Process ID: 52350
+   Directory: /project/tsmc65/users/ternery/ws/my_k5_proj/sim
+     Command: /tools/cadence/XCELIUM/23.09.013/tools.lnx86/simvision/bin/64bit/ippe.exe -nocopyright -nowarn DLNOCL -cdslib /project/tsmc65/users/ternery/ws/my_k5_proj/sim/./xcelium.d/run.lnx8664.23.09.d/cds.lib -snapshot worklib.k5_tb:sv -64
+
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:36:58 PM UTC 2026
+Exit Simulator: user
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:37:42 PM UTC 2026
+Recall Simulator
+ 
+*** Message Type: error ***
+When: Mon Jun 29 03:39:38 PM UTC 2026
+can't find field "-signal"  in node "53
+    while executing
+"$_tree get $id -signal"
+    ("default" arm line 2)
+    invoked from within
+"switch -- [type $id] {
+                group - overlay - transaction - comment - pending - cdivider {
+             continue
+           }
+              default {
+                  set fname [dac::name [$_t..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_drag" body line 17)
+    invoked from within
+"::.waveWindow0.work.user.waveset _drag text/signal"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag text/signal}"
+    invoked from within
+"list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::WaveSet {::.wa..."
+    invoked from within
+"list {copy} [list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::W..."
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 $cmd"
+    (procedure "tkdnd::_init_drag" line 10)
+    invoked from within
+"tkdnd::_init_drag 0 $window  "press" 0 0"
+    ("drag" arm line 11)
+    invoked from within
+"switch $method {
+    bindtarget {
+      switch [llength $args] {
+        0 {return [tkdnd::compat::bindtarget0 $window]}
+        1 {return [tkdnd::com..."
+    (procedure "::dnd" line 4)
+    invoked from within
+"::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "cwidgets::dnd" line 1)
+    invoked from within
+"cwidgets::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "::svdnd" line 1)
+    invoked from within
+"::svdnd drag $win -actions {copy} -id [list [pid] $this]"
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_delayedStartDND" body line 35)
+    invoked from within
+"::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 98 115 1"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 98 115 1}"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Mon Jun 29 03:39:40 PM UTC 2026
+can't find field "-signal"  in node "53
+    while executing
+"$_tree get $id -signal"
+    ("default" arm line 2)
+    invoked from within
+"switch -- [type $id] {
+                group - overlay - transaction - comment - pending - cdivider {
+             continue
+           }
+              default {
+                  set fname [dac::name [$_t..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_drag" body line 17)
+    invoked from within
+"::.waveWindow0.work.user.waveset _drag text/signal"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag text/signal}"
+    invoked from within
+"list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::WaveSet {::.wa..."
+    invoked from within
+"list {copy} [list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::W..."
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 $cmd"
+    (procedure "tkdnd::_init_drag" line 10)
+    invoked from within
+"tkdnd::_init_drag 0 $window  "press" 0 0"
+    ("drag" arm line 11)
+    invoked from within
+"switch $method {
+    bindtarget {
+      switch [llength $args] {
+        0 {return [tkdnd::compat::bindtarget0 $window]}
+        1 {return [tkdnd::com..."
+    (procedure "::dnd" line 4)
+    invoked from within
+"::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "cwidgets::dnd" line 1)
+    invoked from within
+"cwidgets::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "::svdnd" line 1)
+    invoked from within
+"::svdnd drag $win -actions {copy} -id [list [pid] $this]"
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_delayedStartDND" body line 35)
+    invoked from within
+"::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 33 121 1"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 33 121 1}"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Mon Jun 29 03:39:42 PM UTC 2026
+can't find field "-signal"  in node "52
+    while executing
+"$_tree get $id -signal"
+    ("default" arm line 2)
+    invoked from within
+"switch -- [type $id] {
+                group - overlay - transaction - comment - pending - cdivider {
+             continue
+           }
+              default {
+                  set fname [dac::name [$_t..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_drag" body line 17)
+    invoked from within
+"::.waveWindow0.work.user.waveset _drag text/signal"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag text/signal}"
+    invoked from within
+"list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::WaveSet {::.wa..."
+    invoked from within
+"list {copy} [list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::W..."
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 $cmd"
+    (procedure "tkdnd::_init_drag" line 10)
+    invoked from within
+"tkdnd::_init_drag 0 $window  "press" 0 0"
+    ("drag" arm line 11)
+    invoked from within
+"switch $method {
+    bindtarget {
+      switch [llength $args] {
+        0 {return [tkdnd::compat::bindtarget0 $window]}
+        1 {return [tkdnd::com..."
+    (procedure "::dnd" line 4)
+    invoked from within
+"::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "cwidgets::dnd" line 1)
+    invoked from within
+"cwidgets::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "::svdnd" line 1)
+    invoked from within
+"::svdnd drag $win -actions {copy} -id [list [pid] $this]"
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_delayedStartDND" body line 35)
+    invoked from within
+"::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 52 67 103 1"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 52 67 103 1}"
+    ("after" script)
+ 
+*** Message Type: error ***
+When: Mon Jun 29 03:39:43 PM UTC 2026
+can't find field "-signal"  in node "53
+    while executing
+"$_tree get $id -signal"
+    ("default" arm line 2)
+    invoked from within
+"switch -- [type $id] {
+                group - overlay - transaction - comment - pending - cdivider {
+             continue
+           }
+              default {
+                  set fname [dac::name [$_t..."
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_drag" body line 17)
+    invoked from within
+"::.waveWindow0.work.user.waveset _drag text/signal"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag text/signal}"
+    invoked from within
+"list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::WaveSet {::.wa..."
+    invoked from within
+"list {copy} [list  {SV_WAVEFORM} [namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _drag SV_WAVEFORM}] {SV_SIGNAL} [namespace inscope ::W..."
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel \#0 $cmd"
+    (procedure "tkdnd::_init_drag" line 10)
+    invoked from within
+"tkdnd::_init_drag 0 $window  "press" 0 0"
+    ("drag" arm line 11)
+    invoked from within
+"switch $method {
+    bindtarget {
+      switch [llength $args] {
+        0 {return [tkdnd::compat::bindtarget0 $window]}
+        1 {return [tkdnd::com..."
+    (procedure "::dnd" line 4)
+    invoked from within
+"::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "cwidgets::dnd" line 1)
+    invoked from within
+"cwidgets::dnd drag .waveWindow0.work.user.waveset.signallist -actions copy -id {52256 ::.waveWindow0.work.user.waveset}"
+    ("eval" body line 1)
+    invoked from within
+"# Compiled -- no source code available
+error "called a copy of a compiled script""
+    (procedure "::svdnd" line 1)
+    invoked from within
+"::svdnd drag $win -actions {copy} -id [list [pid] $this]"
+    (object "::.waveWindow0.work.user.waveset" method "::WaveSet::_delayedStartDND" body line 35)
+    invoked from within
+"::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 46 125 1"
+    (in namespace inscope "::WaveSet" script line 1)
+    invoked from within
+"namespace inscope ::WaveSet {::.waveWindow0.work.user.waveset _delayedStartDND .waveWindow0.work.user.waveset.signallist 53 46 125 1}"
+    ("after" script)
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:45:49 PM UTC 2026
+Connect to Simulator
+      Design: worklib.k5_tb:sv
+   Languages: verilog
+   Simulator: Xcelium ppe
+     Version: TOOL:      ippe(64)        23.09-s013
+        User: ternery
+        Host: ip-10-70-141-50.il-central-1.compute.internal
+Time Started: Mon Jun 29 03:45:48 PM UTC 2026
+  Process ID: 52916
+   Directory: /project/tsmc65/users/ternery/ws/my_k5_proj/sim
+     Command: /tools/cadence/XCELIUM/23.09.013/tools.lnx86/simvision/bin/64bit/ippe.exe -nocopyright -nowarn DLNOCL -cdslib /project/tsmc65/users/ternery/ws/my_k5_proj/sim/./xcelium.d/run.lnx8664.23.09.d/cds.lib -snapshot worklib.k5_tb:sv -64
+
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:45:49 PM UTC 2026
+Exit Simulator: user
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:46:56 PM UTC 2026
+Exit Simulator: user
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:47:52 PM UTC 2026
+Recall Simulator
+ 
+*** Message Type: info ***
+When: Mon Jun 29 03:48:48 PM UTC 2026
+Delete waveform window: "Waveform 1"
+ 

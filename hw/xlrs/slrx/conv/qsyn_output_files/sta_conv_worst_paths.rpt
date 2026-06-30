@@ -1,0 +1,2015 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Tue Jun 30 12:55:48 2026
+Info: Command: quartus_sta -t /data/project/tsmc65/shared/qsyn/util/report_worst.tcl conv
+Info: Quartus(args): conv
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/data/project/tsmc65/shared/qsyn/basic.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332115): Report Timing: Found 20 setup paths (20 violated).  Worst case slack is -16.095
+    Info (332115): -setup
+    Info (332115): -npaths 20
+    Info (332115): -detail full_path
+    Info (332115): -stdout
+Info (332115): Path #1: Setup slack is -16.095 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.997      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.449      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.926      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.926      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.985      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.985      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     19.044      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     19.044      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.103      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.103      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.740      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.562      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     21.001      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     21.001      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.095      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.095
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.095 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #2: Setup slack is -16.094 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.997      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.449      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.926      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.926      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.985      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.985      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     19.044      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     19.044      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.103      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.103      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.740      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.561      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     21.000      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     21.000      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.094      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.094
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.094 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #3: Setup slack is -16.079 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     17.613      0.059 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.613      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     17.672      0.059 FR  CELL  conv|Add27~36|cout
+    Info (332115):     17.672      0.000 RR    IC  conv|Add27~38|cin
+    Info (332115):     18.277      0.605 RF  CELL  conv|Add27~38|combout
+    Info (332115):     18.694      0.417 FF    IC  conv|Add35~38|datab
+    Info (332115):     19.087      0.393 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.087      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.724      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.546      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.985      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.985      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.079      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.079
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.079 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #4: Setup slack is -16.078 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     18.159      0.605 RF  CELL  conv|Add27~34|combout
+    Info (332115):     18.586      0.427 FF    IC  conv|Add35~34|dataa
+    Info (332115):     18.968      0.382 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.968      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     19.027      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     19.027      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.086      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.086      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.723      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.545      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.984      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.984      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.078      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.078
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.078 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #5: Setup slack is -16.078 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     17.613      0.059 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.613      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     17.672      0.059 FR  CELL  conv|Add27~36|cout
+    Info (332115):     17.672      0.000 RR    IC  conv|Add27~38|cin
+    Info (332115):     18.277      0.605 RF  CELL  conv|Add27~38|combout
+    Info (332115):     18.694      0.417 FF    IC  conv|Add35~38|datab
+    Info (332115):     19.087      0.393 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.087      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.724      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.545      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.984      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.984      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.078      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.078
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.078 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #6: Setup slack is -16.077 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     18.159      0.605 RF  CELL  conv|Add27~34|combout
+    Info (332115):     18.586      0.427 FF    IC  conv|Add35~34|dataa
+    Info (332115):     18.968      0.382 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.968      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     19.027      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     19.027      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.086      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.086      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.723      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.544      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.983      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.983      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.077      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.077
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.077 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #7: Setup slack is -16.070 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     17.613      0.059 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.613      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     18.115      0.502 FF  CELL  conv|Add27~36|combout
+    Info (332115):     18.542      0.427 FF    IC  conv|Add35~36|dataa
+    Info (332115):     19.019      0.477 FF  CELL  conv|Add35~36|cout
+    Info (332115):     19.019      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.078      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.078      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.715      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.537      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.976      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.976      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.070      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.070
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.070 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #8: Setup slack is -16.069 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     17.613      0.059 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.613      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     18.115      0.502 FF  CELL  conv|Add27~36|combout
+    Info (332115):     18.542      0.427 FF    IC  conv|Add35~36|dataa
+    Info (332115):     19.019      0.477 FF  CELL  conv|Add35~36|cout
+    Info (332115):     19.019      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.078      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.078      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.715      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.536      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.975      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.975      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.069      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.069
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.069 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #9: Setup slack is -16.039 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     15.963      0.059 RF  CELL  conv|Add19~30|cout
+    Info (332115):     15.963      0.000 FF    IC  conv|Add19~32|cin
+    Info (332115):     16.022      0.059 FR  CELL  conv|Add19~32|cout
+    Info (332115):     16.022      0.000 RR    IC  conv|Add19~34|cin
+    Info (332115):     16.659      0.637 RR  CELL  conv|Add19~34|combout
+    Info (332115):     17.067      0.408 RR    IC  conv|Add27~34|dataa
+    Info (332115):     17.573      0.506 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.573      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     17.632      0.059 FR  CELL  conv|Add27~36|cout
+    Info (332115):     17.632      0.000 RR    IC  conv|Add27~38|cin
+    Info (332115):     18.237      0.605 RF  CELL  conv|Add27~38|combout
+    Info (332115):     18.654      0.417 FF    IC  conv|Add35~38|datab
+    Info (332115):     19.047      0.393 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.047      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.684      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.506      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.945      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.945      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.039      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.039
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.039 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #10: Setup slack is -16.038 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     15.963      0.059 RF  CELL  conv|Add19~30|cout
+    Info (332115):     15.963      0.000 FF    IC  conv|Add19~32|cin
+    Info (332115):     16.022      0.059 FR  CELL  conv|Add19~32|cout
+    Info (332115):     16.022      0.000 RR    IC  conv|Add19~34|cin
+    Info (332115):     16.659      0.637 RR  CELL  conv|Add19~34|combout
+    Info (332115):     17.067      0.408 RR    IC  conv|Add27~34|dataa
+    Info (332115):     17.573      0.506 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.573      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     17.632      0.059 FR  CELL  conv|Add27~36|cout
+    Info (332115):     17.632      0.000 RR    IC  conv|Add27~38|cin
+    Info (332115):     18.237      0.605 RF  CELL  conv|Add27~38|combout
+    Info (332115):     18.654      0.417 FF    IC  conv|Add35~38|datab
+    Info (332115):     19.047      0.393 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.047      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.684      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.505      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.944      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.944      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.038      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.038
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.038 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #11: Setup slack is -16.033 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][0]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][0]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][0]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][0]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][0]|q
+    Info (332115):      4.525      0.687 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[1]
+    Info (332115):      7.466      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.466      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.593      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.474      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.951      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.951      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.010      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.010      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.069      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.069      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.128      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.128      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.187      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.187      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.246      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.246      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.305      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.305      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.364      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.364      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.001      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.563      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.927      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.927      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.564      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.287      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.811      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.811      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.870      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.870      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.929      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.929      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.988      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.988      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.625      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.259      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.783      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.783      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.842      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.842      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.479      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.927      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.433      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.433      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.935      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.387      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.864      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.864      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.923      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.923      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.982      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.982      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.041      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.041      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.678      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.500      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.939      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.939      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.033      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.033
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.033 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #12: Setup slack is -16.032 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][4]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][4]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][4]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][4]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][4]|q
+    Info (332115):      4.524      0.686 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[5]
+    Info (332115):      7.465      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.465      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.592      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.473      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.950      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.950      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.009      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.009      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.068      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.068      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.127      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.127      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.186      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.186      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.245      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.245      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.304      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.304      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.363      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.363      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.000      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.562      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.926      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.926      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.563      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.286      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.810      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.810      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.869      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.869      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.928      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.928      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.987      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.987      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.624      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.258      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.782      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.782      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.841      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.841      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.478      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.926      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.432      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.432      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.934      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.386      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.863      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.863      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.922      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.922      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.981      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.981      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.040      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.040      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.677      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.499      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.938      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.938      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.032      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.032
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.032 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #13: Setup slack is -16.032 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][0]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][0]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][0]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][0]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][0]|q
+    Info (332115):      4.525      0.687 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[1]
+    Info (332115):      7.466      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.466      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.593      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.474      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.951      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.951      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.010      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.010      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.069      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.069      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.128      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.128      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.187      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.187      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.246      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.246      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.305      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.305      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.364      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.364      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.001      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.563      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.927      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.927      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.564      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.287      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.811      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.811      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.870      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.870      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.929      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.929      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.988      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.988      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.625      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.259      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.783      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.783      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.842      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.842      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.479      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.927      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.433      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.433      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.935      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.387      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.864      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.864      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.923      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.923      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.982      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.982      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.041      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.041      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.678      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.499      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.938      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.938      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.032      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.032
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.032 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #14: Setup slack is -16.031 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][4]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][4]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][4]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][4]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][4]|q
+    Info (332115):      4.524      0.686 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[5]
+    Info (332115):      7.465      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.465      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.592      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.473      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.950      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.950      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.009      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.009      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.068      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.068      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.127      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.127      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.186      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.186      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.245      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.245      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.304      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.304      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.363      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.363      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.000      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.562      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.926      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.926      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.563      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.286      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.810      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.810      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.869      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.869      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.928      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.928      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.987      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.987      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.624      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.258      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.782      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.782      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.841      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.841      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.478      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.926      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.432      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.432      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.934      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.386      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.863      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.863      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.922      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.922      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.981      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.981      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.040      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.040      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.677      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.498      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.937      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.937      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.031      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.031
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.031 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #15: Setup slack is -16.030 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     15.963      0.059 RF  CELL  conv|Add19~30|cout
+    Info (332115):     15.963      0.000 FF    IC  conv|Add19~32|cin
+    Info (332115):     16.022      0.059 FR  CELL  conv|Add19~32|cout
+    Info (332115):     16.022      0.000 RR    IC  conv|Add19~34|cin
+    Info (332115):     16.659      0.637 RR  CELL  conv|Add19~34|combout
+    Info (332115):     17.067      0.408 RR    IC  conv|Add27~34|dataa
+    Info (332115):     17.573      0.506 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.573      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     18.075      0.502 FF  CELL  conv|Add27~36|combout
+    Info (332115):     18.502      0.427 FF    IC  conv|Add35~36|dataa
+    Info (332115):     18.979      0.477 FF  CELL  conv|Add35~36|cout
+    Info (332115):     18.979      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.038      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.038      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.675      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.497      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.936      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.936      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.030      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.030
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.030 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #16: Setup slack is -16.029 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     15.963      0.059 RF  CELL  conv|Add19~30|cout
+    Info (332115):     15.963      0.000 FF    IC  conv|Add19~32|cin
+    Info (332115):     16.022      0.059 FR  CELL  conv|Add19~32|cout
+    Info (332115):     16.022      0.000 RR    IC  conv|Add19~34|cin
+    Info (332115):     16.659      0.637 RR  CELL  conv|Add19~34|combout
+    Info (332115):     17.067      0.408 RR    IC  conv|Add27~34|dataa
+    Info (332115):     17.573      0.506 RF  CELL  conv|Add27~34|cout
+    Info (332115):     17.573      0.000 FF    IC  conv|Add27~36|cin
+    Info (332115):     18.075      0.502 FF  CELL  conv|Add27~36|combout
+    Info (332115):     18.502      0.427 FF    IC  conv|Add35~36|dataa
+    Info (332115):     18.979      0.477 FF  CELL  conv|Add35~36|cout
+    Info (332115):     18.979      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.038      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.038      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.675      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.496      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.935      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.935      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.029      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.029
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.029 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #17: Setup slack is -16.027 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][2]
+    Info (332115): To Node      : conv:conv|conv_out_val[1]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][2]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][2]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][2]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][2]|q
+    Info (332115):      4.519      0.681 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[3]
+    Info (332115):      7.460      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.460      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.587      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.468      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.945      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.945      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.004      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.004      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.063      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.063      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.122      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.122      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.181      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.181      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.240      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.240      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.299      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.299      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.358      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.358      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):      9.995      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.557      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.921      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.921      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.558      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.281      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.805      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.805      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.864      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.864      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.923      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.923      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.982      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.982      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.619      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.253      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.777      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.777      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.836      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.836      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.473      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.921      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.427      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.427      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.929      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.381      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.858      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.858      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.917      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.917      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.976      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.976      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.035      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.035      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.672      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.494      0.822 RR    IC  conv|conv_out_val_ps[1]~3|dataa
+    Info (332115):     20.933      0.439 RF  CELL  conv|conv_out_val_ps[1]~3|combout
+    Info (332115):     20.933      0.000 FF    IC  conv|conv_out_val[1]|d
+    Info (332115):     21.027      0.094 FF  CELL  conv:conv|conv_out_val[1]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[1]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[1]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[1]
+    Info (332115): Data Arrival Time  :    21.027
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.027 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #18: Setup slack is -16.026 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][2]
+    Info (332115): To Node      : conv:conv|conv_out_val[0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][2]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][2]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][2]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][2]|q
+    Info (332115):      4.519      0.681 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[3]
+    Info (332115):      7.460      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.460      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.587      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.468      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      8.945      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      8.945      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.004      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.004      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.063      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.063      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.122      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.122      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.181      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.181      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.240      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.240      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.299      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.299      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.358      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.358      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):      9.995      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.557      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.921      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.921      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.558      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.281      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.805      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.805      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.864      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.864      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.923      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.923      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     13.982      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     13.982      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.619      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.253      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.777      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.777      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.836      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.836      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.473      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.921      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.427      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.427      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.929      0.502 FF  CELL  conv|Add27~32|combout
+    Info (332115):     18.381      0.452 FF    IC  conv|Add35~32|dataa
+    Info (332115):     18.858      0.477 FF  CELL  conv|Add35~32|cout
+    Info (332115):     18.858      0.000 FF    IC  conv|Add35~34|cin
+    Info (332115):     18.917      0.059 FR  CELL  conv|Add35~34|cout
+    Info (332115):     18.917      0.000 RR    IC  conv|Add35~36|cin
+    Info (332115):     18.976      0.059 RF  CELL  conv|Add35~36|cout
+    Info (332115):     18.976      0.000 FF    IC  conv|Add35~38|cin
+    Info (332115):     19.035      0.059 FR  CELL  conv|Add35~38|cout
+    Info (332115):     19.035      0.000 RR    IC  conv|Add35~40|cin
+    Info (332115):     19.672      0.637 RR  CELL  conv|Add35~40|combout
+    Info (332115):     20.493      0.821 RR    IC  conv|conv_out_val_ps[0]~1|dataa
+    Info (332115):     20.932      0.439 RF  CELL  conv|conv_out_val_ps[0]~1|combout
+    Info (332115):     20.932      0.000 FF    IC  conv|conv_out_val[0]|d
+    Info (332115):     21.026      0.094 FF  CELL  conv:conv|conv_out_val[0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.473      1.846 RR    IC  conv|conv_out_val[0]|clk
+    Info (332115):      4.948      0.475 RR  CELL  conv:conv|conv_out_val[0]
+    Info (332115):      5.007      0.059           clock pessimism removed
+    Info (332115):      4.987     -0.020           clock uncertainty
+    Info (332115):      5.000      0.013     uTsu  conv:conv|conv_out_val[0]
+    Info (332115): Data Arrival Time  :    21.026
+    Info (332115): Data Required Time :     5.000
+    Info (332115): Slack              :   -16.026 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #19: Setup slack is -16.022 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[4]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     18.191      0.637 RR  CELL  conv|Add27~34|combout
+    Info (332115):     18.600      0.409 RR    IC  conv|Add35~34|dataa
+    Info (332115):     19.106      0.506 RF  CELL  conv|Add35~34|cout
+    Info (332115):     19.106      0.000 FF    IC  conv|Add35~36|cin
+    Info (332115):     19.608      0.502 FF  CELL  conv|Add35~36|combout
+    Info (332115):     19.907      0.299 FF    IC  conv|conv_out_val_ps[0]~4|datab
+    Info (332115):     20.311      0.404 FF  CELL  conv|conv_out_val_ps[0]~4|combout
+    Info (332115):     20.609      0.298 FF    IC  conv|conv_out_val_ps[4]~7|datac
+    Info (332115):     20.907      0.298 FF  CELL  conv|conv_out_val_ps[4]~7|combout
+    Info (332115):     20.907      0.000 FF    IC  conv|conv_out_val[4]|d
+    Info (332115):     21.001      0.094 FF  CELL  conv:conv|conv_out_val[4]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.452      1.825 RR    IC  conv|conv_out_val[4]|clk
+    Info (332115):      4.927      0.475 RR  CELL  conv:conv|conv_out_val[4]
+    Info (332115):      4.986      0.059           clock pessimism removed
+    Info (332115):      4.966     -0.020           clock uncertainty
+    Info (332115):      4.979      0.013     uTsu  conv:conv|conv_out_val[4]
+    Info (332115): Data Arrival Time  :    21.001
+    Info (332115): Data Required Time :     4.979
+    Info (332115): Slack              :   -16.022 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #20: Setup slack is -16.021 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : conv:conv|kernel[0][2][3]
+    Info (332115): To Node      : conv:conv|conv_out_val[2]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.121      1.458 RR    IC  conv|kernel[0][2][3]|clk
+    Info (332115):      3.631      0.510 RR  CELL  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.207     uTco  conv:conv|kernel[0][2][3]
+    Info (332115):      3.838      0.000 FF  CELL  conv|kernel[0][2][3]|q
+    Info (332115):      4.587      0.749 FF    IC  conv|Mult4|auto_generated|mac_mult1|datab[4]
+    Info (332115):      7.528      2.941 FR  CELL  conv|Mult4|auto_generated|mac_mult1|dataout[17]
+    Info (332115):      7.528      0.000 RR    IC  conv|Mult4|auto_generated|mac_out2|dataa[1]
+    Info (332115):      7.655      0.127 RF  CELL  conv|Mult4|auto_generated|mac_out2|dataout[1]
+    Info (332115):      8.536      0.881 FF    IC  conv|Add12~0|dataa
+    Info (332115):      9.013      0.477 FF  CELL  conv|Add12~0|cout
+    Info (332115):      9.013      0.000 FF    IC  conv|Add12~2|cin
+    Info (332115):      9.072      0.059 FR  CELL  conv|Add12~2|cout
+    Info (332115):      9.072      0.000 RR    IC  conv|Add12~4|cin
+    Info (332115):      9.131      0.059 RF  CELL  conv|Add12~4|cout
+    Info (332115):      9.131      0.000 FF    IC  conv|Add12~6|cin
+    Info (332115):      9.190      0.059 FR  CELL  conv|Add12~6|cout
+    Info (332115):      9.190      0.000 RR    IC  conv|Add12~8|cin
+    Info (332115):      9.249      0.059 RF  CELL  conv|Add12~8|cout
+    Info (332115):      9.249      0.000 FF    IC  conv|Add12~10|cin
+    Info (332115):      9.308      0.059 FR  CELL  conv|Add12~10|cout
+    Info (332115):      9.308      0.000 RR    IC  conv|Add12~12|cin
+    Info (332115):      9.367      0.059 RF  CELL  conv|Add12~12|cout
+    Info (332115):      9.367      0.000 FF    IC  conv|Add12~14|cin
+    Info (332115):      9.426      0.059 FR  CELL  conv|Add12~14|cout
+    Info (332115):      9.426      0.000 RR    IC  conv|Add12~16|cin
+    Info (332115):     10.063      0.637 RR  CELL  conv|Add12~16|combout
+    Info (332115):     11.625      1.562 RR    IC  conv|Add13~16|datab
+    Info (332115):     11.989      0.364 RR  CELL  conv|Add13~16|cout
+    Info (332115):     11.989      0.000 RR    IC  conv|Add13~18|cin
+    Info (332115):     12.626      0.637 RR  CELL  conv|Add13~18|combout
+    Info (332115):     13.349      0.723 RR    IC  conv|Add15~18|datab
+    Info (332115):     13.873      0.524 RF  CELL  conv|Add15~18|cout
+    Info (332115):     13.873      0.000 FF    IC  conv|Add15~20|cin
+    Info (332115):     13.932      0.059 FR  CELL  conv|Add15~20|cout
+    Info (332115):     13.932      0.000 RR    IC  conv|Add15~22|cin
+    Info (332115):     13.991      0.059 RF  CELL  conv|Add15~22|cout
+    Info (332115):     13.991      0.000 FF    IC  conv|Add15~24|cin
+    Info (332115):     14.050      0.059 FR  CELL  conv|Add15~24|cout
+    Info (332115):     14.050      0.000 RR    IC  conv|Add15~26|cin
+    Info (332115):     14.687      0.637 RR  CELL  conv|Add15~26|combout
+    Info (332115):     15.321      0.634 RR    IC  conv|Add19~26|datab
+    Info (332115):     15.845      0.524 RF  CELL  conv|Add19~26|cout
+    Info (332115):     15.845      0.000 FF    IC  conv|Add19~28|cin
+    Info (332115):     15.904      0.059 FR  CELL  conv|Add19~28|cout
+    Info (332115):     15.904      0.000 RR    IC  conv|Add19~30|cin
+    Info (332115):     16.541      0.637 RR  CELL  conv|Add19~30|combout
+    Info (332115):     16.989      0.448 RR    IC  conv|Add27~30|dataa
+    Info (332115):     17.495      0.506 RF  CELL  conv|Add27~30|cout
+    Info (332115):     17.495      0.000 FF    IC  conv|Add27~32|cin
+    Info (332115):     17.554      0.059 FR  CELL  conv|Add27~32|cout
+    Info (332115):     17.554      0.000 RR    IC  conv|Add27~34|cin
+    Info (332115):     18.191      0.637 RR  CELL  conv|Add27~34|combout
+    Info (332115):     18.600      0.409 RR    IC  conv|Add35~34|dataa
+    Info (332115):     19.106      0.506 RF  CELL  conv|Add35~34|cout
+    Info (332115):     19.106      0.000 FF    IC  conv|Add35~36|cin
+    Info (332115):     19.608      0.502 FF  CELL  conv|Add35~36|combout
+    Info (332115):     19.907      0.299 FF    IC  conv|conv_out_val_ps[0]~4|datab
+    Info (332115):     20.311      0.404 FF  CELL  conv|conv_out_val_ps[0]~4|combout
+    Info (332115):     20.608      0.297 FF    IC  conv|conv_out_val_ps[2]~5|datac
+    Info (332115):     20.906      0.298 FF  CELL  conv|conv_out_val_ps[2]~5|combout
+    Info (332115):     20.906      0.000 FF    IC  conv|conv_out_val[2]|d
+    Info (332115):     21.000      0.094 FF  CELL  conv:conv|conv_out_val[2]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.452      1.825 RR    IC  conv|conv_out_val[2]|clk
+    Info (332115):      4.927      0.475 RR  CELL  conv:conv|conv_out_val[2]
+    Info (332115):      4.986      0.059           clock pessimism removed
+    Info (332115):      4.966     -0.020           clock uncertainty
+    Info (332115):      4.979      0.013     uTsu  conv:conv|conv_out_val[2]
+    Info (332115): Data Arrival Time  :    21.000
+    Info (332115): Data Required Time :     4.979
+    Info (332115): Slack              :   -16.021 (VIOLATED)
+    Info (332115): ===================================================================
+Info (23030): Evaluation of Tcl script /data/project/tsmc65/shared/qsyn/util/report_worst.tcl was successful
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 715 megabytes
+    Info: Processing ended: Tue Jun 30 12:55:49 2026
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01

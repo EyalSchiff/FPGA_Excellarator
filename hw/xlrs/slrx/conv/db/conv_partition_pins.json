@@ -80,6 +80,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "mem_size_bytes[2]",
+					"strict" : false
+				},
+				{
 					"name" : "mem_size_bytes[3]",
 					"strict" : false
 				},
@@ -124,6 +128,102 @@
 					"strict" : false
 				},
 				{
+					"name" : "dummy_dout[8]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[9]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[10]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[11]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[12]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[13]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[14]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[15]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[16]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[17]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[18]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[19]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[20]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[21]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[22]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[23]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[24]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[25]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[26]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[27]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[28]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[29]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[30]",
+					"strict" : false
+				},
+				{
+					"name" : "dummy_dout[31]",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
 					"strict" : false
 				},
@@ -164,11 +264,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "reg_idx[1]",
+					"name" : "reg_idx[0]",
 					"strict" : false
 				},
 				{
-					"name" : "reg_idx[0]",
+					"name" : "reg_idx[1]",
 					"strict" : false
 				},
 				{
@@ -240,11 +340,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "host_regs_read_pulse[15]",
+					"strict" : false
+				},
+				{
 					"name" : "host_regs_valid_pulse",
 					"strict" : false
 				},
 				{
-					"name" : "host_regs_read_pulse[15]",
+					"name" : "dummy_din[20]",
 					"strict" : false
 				},
 				{
@@ -264,15 +368,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "dummy_din[20]",
+					"name" : "dummy_din[24]",
 					"strict" : false
 				},
 				{
 					"name" : "sel_word_idx[3]",
-					"strict" : false
-				},
-				{
-					"name" : "dummy_din[24]",
 					"strict" : false
 				},
 				{
