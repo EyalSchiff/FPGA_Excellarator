@@ -83,18 +83,16 @@ void linear(uint8_t* lin_arr_out,     // linear output feature-map (single row)
     #ifdef LIN_XON
     lin_elem_setup(lin_arr_out, lin_arr_in, lin_in_dim, lin_out_dim, linear_w_trn, linear_b);    
     #endif
-
-
+    #ifdef LIN_XON
+    for (int lin_out_idx = 0; lin_out_idx < lin_out_dim; lin_out_idx += 2) {
+        lin_elem_xlr(lin_out_idx); // HW computes this column AND lin_out_idx+1 together
+    }
+    #else
     for (int lin_out_idx = 0; lin_out_idx < lin_out_dim; lin_out_idx++) {
         int32_t acc = linear_b[lin_out_idx];
-        
-        #ifndef LIN_XON
-        lin_elem_nox(lin_arr_out, lin_arr_in, lin_in_dim, linear_w_trn, linear_b, lin_out_idx);   
-
-        #else
-        lin_elem_xlr(lin_out_idx); // output vector element index
-        #endif
+        lin_elem_nox(lin_arr_out, lin_arr_in, lin_in_dim, linear_w_trn, linear_b, lin_out_idx);
     }
+    #endif
 }
 
 //------------------------------------------------------------------------------------------------------------

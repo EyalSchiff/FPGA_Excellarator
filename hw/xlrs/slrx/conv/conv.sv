@@ -1,11 +1,19 @@
 //=============================================================================
 // File: conv.sv
-// Description: Convolution Accelerator (5x5) - OPTIMIZED
-//   Same proven datapath / arithmetic as the working version.
-//   Optimization: the 5 input rows are CACHED across CONV_WINDOW calls.
-//   Because the C driver sweeps out_col_idx with out_row_idx held constant,
-//   consecutive windows in the same output row reuse the buffered rows and
-//   skip READ_ROWS entirely. Only the first pixel of each output row reloads.
+// Description: Convolution Accelerator (5x5) - DUAL parallel compute blocks
+//
+//   Contract (unchanged interface): ONE CONV_WINDOW computes TWO output rows.
+//     - Block A : output row  rA = out_row_idx              (top half)
+//     - Block B : output row  rB = out_row_idx + half_rows  (bottom half)
+//   half_rows = ceil(out_dim/2). The C driver loops r = 0..half_rows-1,
+//   so the number of accelerator calls is halved (out_dim -> out_dim/2).
+//
+//   Each block has its own 5-row input buffer and its own 25-MAC datapath,
+//   and streams its output row left->right at 1 pixel/cycle. The single write
+//   port is shared by a round-robin arbiter (one byte written per cycle).
+//
+//   Arithmetic (bias + sum(pixel*weight), ReLU, descale >>>8, saturate) is
+//   IDENTICAL to the proven single-block version.
 //=============================================================================
 
 import xbox_def_pkg::*;
@@ -27,10 +35,9 @@ module conv (
   enum {
      IDLE,
      READ_KERNEL,
-     READ_ROWS,
-     WINDOW,
-     CALC,
-     WRITE,
+     LOAD_A,        // load 5 input rows for block A's region
+     LOAD_B,        // load 5 input rows for block B's region
+     STREAM,        // both blocks scan their rows in parallel
      DONE
   } next_state, state;
 
@@ -44,85 +51,83 @@ module conv (
   localparam ARR_IDX_W         = $clog2(DIM_MAX_SIZE);
 
   //===========================================================================
-  // Control Signals
+  // Control
   //===========================================================================
   logic conv_start;
   logic conv_done;
   logic clear_done_on_read;
+  logic conv_active;
 
   //===========================================================================
-  // Kernel Storage
+  // Kernel + two input row buffers (one per block)
   //===========================================================================
-  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel;
-  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel_ps;
+  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel, kernel_ps;
+
+  logic [KERNEL_DIM-1:0][DIM_MAX_SIZE-1:0][7:0] bufA, bufA_ps;
+  logic [KERNEL_DIM-1:0][DIM_MAX_SIZE-1:0][7:0] bufB, bufB_ps;
 
   //===========================================================================
-  // Input Data Buffer (5 rows x up to 32 bytes)
-  //===========================================================================
-  logic [KERNEL_DIM-1:0][DIM_MAX_SIZE-1:0][7:0] conv_rows_buf;
-  logic [KERNEL_DIM-1:0][DIM_MAX_SIZE-1:0][7:0] conv_rows_buf_ps;
-
-  //===========================================================================
-  // Memory Addresses
+  // Host-configured registers
   //===========================================================================
   logic [XMEM_ADDR_WIDTH-1:0] conv_kernel_addr;
   logic [XMEM_ADDR_WIDTH-1:0] conv_arr_in_addr;
   logic [XMEM_ADDR_WIDTH-1:0] conv_arr_out_addr;
 
-  logic [XMEM_ADDR_WIDTH-1:0] conv_rslt_out_addr;
-  logic [XMEM_ADDR_WIDTH-1:0] conv_rslt_out_addr_ps;
-
-  //===========================================================================
-  // Layer Configuration
-  //===========================================================================
   logic [MAX_DOT_PROD_WIDTH-1:0] conv_bias_val;
 
   logic [ARR_IDX_W:0] conv_arr_in_dim;
   logic [ARR_IDX_W:0] conv_arr_out_dim;
-
   logic [ARR_IDX_W-1:0] conv_out_row_idx;
-  logic [ARR_IDX_W-1:0] conv_out_col_idx;
+
+  logic [ARR_IDX_W:0] half_rows;          // ceil(out_dim/2) = block A row count
+  logic [ARR_IDX_W:0] row_b;              // block B output row = out_row_idx + half_rows
 
   //===========================================================================
-  // Memory Addressing
+  // Row read addressing (shared by the two load phases)
   //===========================================================================
-  logic [XMEM_ADDR_WIDTH-1:0] arr_in_row_addr;
-  logic [XMEM_ADDR_WIDTH-1:0] arr_in_row_addr_ps;
+  logic [XMEM_ADDR_WIDTH-1:0] arr_in_row_addr, arr_in_row_addr_ps;
+  logic [ARR_IDX_W-1:0]       buf_load_row_idx, buf_load_row_idx_ps;
+  logic                       is_last_load_row;
 
   //===========================================================================
-  // Output Value
+  // Per-block STREAM datapath
   //===========================================================================
-  logic [7:0] conv_out_val;
-  logic [7:0] conv_out_val_ps;
+  logic [ARR_IDX_W:0]         colA, colA_ps;     // compute column (block A)
+  logic [ARR_IDX_W:0]         colB, colB_ps;     // compute column (block B)
+  logic [XMEM_ADDR_WIDTH-1:0] baseA, baseA_ps;   // output base addr (row A)
+  logic [XMEM_ADDR_WIDTH-1:0] baseB, baseB_ps;   // output base addr (row B)
+
+  logic                wr_validA, wr_validA_ps;  // output pipeline reg A
+  logic [7:0]          wr_byteA,  wr_byteA_ps;
+  logic [ARR_IDX_W:0]  wr_colA,   wr_colA_ps;
+
+  logic                wr_validB, wr_validB_ps;  // output pipeline reg B
+  logic [7:0]          wr_byteB,  wr_byteB_ps;
+  logic [ARR_IDX_W:0]  wr_colB,   wr_colB_ps;
+
+  logic                activeB, activeB_ps;      // block B has a valid row this call
+  logic                last_served, last_served_ps; // 0=A served last, 1=B served last
 
   //===========================================================================
-  // Buffer Control
+  // Two parallel 25-MAC blocks (combinational window + dot product)
   //===========================================================================
-  logic [ARR_IDX_W-1:0] buf_load_row_idx;
-  logic [ARR_IDX_W-1:0] buf_load_row_idx_ps;
-  logic is_last_load_row;
+  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] winA, winB;
+  logic [7:0]                                 resultA, resultB;
+
+  always_comb begin
+    for (int i = 0; i < KERNEL_DIM; i++)
+      for (int j = 0; j < KERNEL_DIM; j++)
+        winA[i][j] = bufA[i][colA + j];
+    resultA = calc_conv_win(kernel, conv_bias_val, winA);
+
+    for (int i = 0; i < KERNEL_DIM; i++)
+      for (int j = 0; j < KERNEL_DIM; j++)
+        winB[i][j] = bufB[i][colB + j];
+    resultB = calc_conv_win(kernel, conv_bias_val, winB);
+  end
 
   //===========================================================================
-  // ROW CACHE  (the optimization)
-  //   cached_row_idx : which out_row_idx the buffer currently holds
-  //   rows_valid     : buffer contents are valid for that row
-  //===========================================================================
-  logic [ARR_IDX_W-1:0] cached_row_idx;
-  logic [ARR_IDX_W-1:0] cached_row_idx_ps;
-  logic                 rows_valid;
-  logic                 rows_valid_ps;
-
-  logic conv_active;
-
-  //===========================================================================
-  // Internal column loop counter (HW looping optimization)
-  //===========================================================================
-  logic [ARR_IDX_W-1:0] loop_col_idx;
-  logic [ARR_IDX_W-1:0] loop_col_idx_ps;
-  logic is_last_col;
-
-  //===========================================================================
-  // Host Register Interface
+  // Host Register Interface (unchanged)
   //===========================================================================
   assign slrx_regs_intrf.xlr_done = conv_done;
 
@@ -138,21 +143,19 @@ module conv (
   assign conv_arr_out_addr = slrx_regs_intrf.host_regs[ARR_OUT_ADDR_RI];
   assign conv_arr_in_dim   = slrx_regs_intrf.host_regs[ARR_IN_DIM_RI];
   assign conv_out_row_idx  = slrx_regs_intrf.host_regs[OUT_ROW_IDX_RI];
-  assign conv_out_col_idx  = slrx_regs_intrf.host_regs[OUT_COL_IDX_RI];
 
   assign conv_arr_out_dim  = conv_arr_in_dim - (KERNEL_DIM - 1);
-
+  assign half_rows         = (conv_arr_out_dim + 1) >> 1;          // ceil(out_dim/2)
+  assign row_b             = conv_out_row_idx + half_rows;
   assign is_last_load_row  = (buf_load_row_idx == (KERNEL_DIM - 1));
 
-  assign is_last_col = (loop_col_idx == (conv_arr_out_dim - 1));
-
-  assign conv_rslt_out_addr_ps = conv_arr_out_addr +
-                                 (conv_out_row_idx * conv_arr_out_dim) +
-                                 loop_col_idx;
-
   //===========================================================================
-  // FSM - Combinational
+  // FSM + datapath - Combinational
   //===========================================================================
+  logic pendingA, pendingB, grantA, grantB;
+  logic ackA, ackB, slot_freeA, slot_freeB;
+  logic doneA, doneB;
+
   always_comb begin
 
     next_state = state;
@@ -162,19 +165,25 @@ module conv (
     mem_intf_read.mem_req         = 0;
 
     mem_intf_write.mem_size_bytes = 1;
-    mem_intf_write.mem_data       = conv_out_val;
-    mem_intf_write.mem_start_addr = conv_rslt_out_addr;
+    mem_intf_write.mem_data       = wr_byteA;
+    mem_intf_write.mem_start_addr = baseA + wr_colA;
     mem_intf_write.mem_req        = 0;
 
     conv_done = 0;
 
-    buf_load_row_idx_ps = buf_load_row_idx;
-    conv_rows_buf_ps    = conv_rows_buf;
+    // hold registers
+    bufA_ps = bufA;  bufB_ps = bufB;  kernel_ps = kernel;
     arr_in_row_addr_ps  = arr_in_row_addr;
-    kernel_ps           = kernel;
-    cached_row_idx_ps   = cached_row_idx;
-    rows_valid_ps       = rows_valid;
-    loop_col_idx_ps     = loop_col_idx;
+    buf_load_row_idx_ps = buf_load_row_idx;
+    colA_ps = colA;  colB_ps = colB;
+    baseA_ps = baseA; baseB_ps = baseB;
+    wr_validA_ps = wr_validA; wr_byteA_ps = wr_byteA; wr_colA_ps = wr_colA;
+    wr_validB_ps = wr_validB; wr_byteB_ps = wr_byteB; wr_colB_ps = wr_colB;
+    activeB_ps = activeB; last_served_ps = last_served;
+
+    pendingA = 1'b0; pendingB = 1'b0; grantA = 1'b0; grantB = 1'b0;
+    ackA = 1'b0; ackB = 1'b0; slot_freeA = 1'b0; slot_freeB = 1'b0;
+    doneA = 1'b0; doneB = 1'b0;
 
     case (state)
 
@@ -182,21 +191,20 @@ module conv (
       IDLE:
         if (conv_start) begin
           if (slrx_cmd == CONV_SETUP) begin
-            next_state    = READ_KERNEL;
-            rows_valid_ps = 1'b0;   // new layer/kernel -> invalidate cached rows
+            next_state = READ_KERNEL;
           end
           else if (slrx_cmd == CONV_WINDOW) begin
-            loop_col_idx_ps = conv_out_col_idx; // SW always sends 0
-            if (rows_valid && (conv_out_row_idx == cached_row_idx)) begin
-              // CACHE HIT: the 5 needed rows are already buffered -> skip reads
-              next_state = WINDOW;
-            end
-            else begin
-              // CACHE MISS: load the 5 rows for this output row
-              next_state          = READ_ROWS;
-              arr_in_row_addr_ps  = conv_arr_in_addr + (conv_out_row_idx * conv_arr_in_dim);
-              buf_load_row_idx_ps = 0;
-            end
+            // init both blocks
+            colA_ps = 0;            colB_ps = 0;
+            wr_validA_ps = 1'b0;    wr_validB_ps = 1'b0;
+            last_served_ps = 1'b1;  // so block A is served first
+            baseA_ps  = conv_arr_out_addr + (conv_out_row_idx * conv_arr_out_dim);
+            baseB_ps  = conv_arr_out_addr + (row_b           * conv_arr_out_dim);
+            activeB_ps = (row_b < conv_arr_out_dim);
+            // start loading block A's 5 input rows
+            arr_in_row_addr_ps  = conv_arr_in_addr + (conv_out_row_idx * conv_arr_in_dim);
+            buf_load_row_idx_ps = 0;
+            next_state = LOAD_A;
           end
         end
 
@@ -205,7 +213,6 @@ module conv (
         mem_intf_read.mem_req        = 1;
         mem_intf_read.mem_start_addr = conv_kernel_addr;
         mem_intf_read.mem_size_bytes = KERNEL_SIZE;
-
         if (mem_intf_read.mem_valid) begin
           kernel_ps  = mem_intf_read.mem_data[KERNEL_SIZE-1:0];
           next_state = DONE;
@@ -213,21 +220,25 @@ module conv (
       end
 
       //---------------------------------------------------------------------
-      READ_ROWS: begin
+      LOAD_A: begin
         mem_intf_read.mem_req        = 1;
         mem_intf_read.mem_start_addr = arr_in_row_addr;
         mem_intf_read.mem_size_bytes = DIM_MAX_SIZE;
-
-        arr_in_row_addr_ps = arr_in_row_addr + conv_arr_in_dim;
+        arr_in_row_addr_ps           = arr_in_row_addr + conv_arr_in_dim;
 
         if (mem_intf_read.mem_valid) begin
-          conv_rows_buf_ps[buf_load_row_idx] = mem_intf_read.mem_data;
-
+          bufA_ps[buf_load_row_idx] = mem_intf_read.mem_data;
           if (is_last_load_row) begin
-            next_state            = WINDOW;
             mem_intf_read.mem_req = 0;
-            cached_row_idx_ps     = conv_out_row_idx;  // remember what is buffered
-            rows_valid_ps         = 1'b1;
+            buf_load_row_idx_ps   = 0;
+            if (activeB) begin
+              // switch to loading block B's region
+              arr_in_row_addr_ps = conv_arr_in_addr + (row_b * conv_arr_in_dim);
+              next_state         = LOAD_B;
+            end
+            else begin
+              next_state = STREAM;
+            end
           end
           else begin
             mem_intf_read.mem_start_addr = arr_in_row_addr;
@@ -237,25 +248,92 @@ module conv (
       end
 
       //---------------------------------------------------------------------
-      WINDOW:
-        next_state = CALC;
+      LOAD_B: begin
+        mem_intf_read.mem_req        = 1;
+        mem_intf_read.mem_start_addr = arr_in_row_addr;
+        mem_intf_read.mem_size_bytes = DIM_MAX_SIZE;
+        arr_in_row_addr_ps           = arr_in_row_addr + conv_arr_in_dim;
 
-      //---------------------------------------------------------------------
-      CALC:
-        next_state = WRITE;
-
-      //---------------------------------------------------------------------
-      WRITE: begin
-        mem_intf_write.mem_req = 1;
-        if (mem_intf_write.mem_ack) begin
-          mem_intf_write.mem_req = 0;
-          if (is_last_col) begin
-            next_state = DONE;
-          end else begin
-            loop_col_idx_ps = loop_col_idx + 1;
-            next_state      = WINDOW; // compute next column, rows already cached
+        if (mem_intf_read.mem_valid) begin
+          bufB_ps[buf_load_row_idx] = mem_intf_read.mem_data;
+          if (is_last_load_row) begin
+            mem_intf_read.mem_req = 0;
+            next_state            = STREAM;
+          end
+          else begin
+            mem_intf_read.mem_start_addr = arr_in_row_addr;
+            buf_load_row_idx_ps          = buf_load_row_idx + 1;
           end
         end
+      end
+
+      //---------------------------------------------------------------------
+      // STREAM : both blocks compute in parallel; one shared write port
+      //---------------------------------------------------------------------
+      STREAM: begin
+        pendingA = wr_validA;
+        pendingB = wr_validB && activeB;
+
+        // round-robin arbiter for the single write port
+        if (pendingA && pendingB) begin
+          grantA = (last_served == 1'b1);   // B served last -> serve A now
+          grantB = ~grantA;
+        end
+        else begin
+          grantA = pendingA;
+          grantB = pendingB;
+        end
+
+        // drive the write port from the granted block
+        mem_intf_write.mem_req = pendingA || pendingB;
+        if (grantA) begin
+          mem_intf_write.mem_data       = wr_byteA;
+          mem_intf_write.mem_start_addr = baseA + wr_colA;
+        end
+        else begin
+          mem_intf_write.mem_data       = wr_byteB;
+          mem_intf_write.mem_start_addr = baseB + wr_colB;
+        end
+
+        ackA = grantA && mem_intf_write.mem_ack;
+        ackB = grantB && mem_intf_write.mem_ack;
+        if (ackA) last_served_ps = 1'b0;
+        if (ackB) last_served_ps = 1'b1;
+
+        slot_freeA = (!wr_validA) || ackA;
+        slot_freeB = (!wr_validB) || ackB;
+
+        // compute stage : block A
+        if (slot_freeA) begin
+          if (colA < conv_arr_out_dim) begin
+            wr_byteA_ps = resultA;
+            wr_colA_ps  = colA;
+            wr_validA_ps= 1'b1;
+            colA_ps     = colA + 1;
+          end
+          else begin
+            wr_validA_ps = 1'b0;
+          end
+        end
+
+        // compute stage : block B
+        if (activeB && slot_freeB) begin
+          if (colB < conv_arr_out_dim) begin
+            wr_byteB_ps = resultB;
+            wr_colB_ps  = colB;
+            wr_validB_ps= 1'b1;
+            colB_ps     = colB + 1;
+          end
+          else begin
+            wr_validB_ps = 1'b0;
+          end
+        end
+
+        // termination : both rows fully computed and drained
+        doneA = (colA >= conv_arr_out_dim) && !wr_validA;
+        doneB = (!activeB) || ((colB >= conv_arr_out_dim) && !wr_validB);
+        if (doneA && doneB)
+          next_state = DONE;
       end
 
       //---------------------------------------------------------------------
@@ -269,59 +347,35 @@ module conv (
   end
 
   //===========================================================================
-  // Window Extraction
-  //===========================================================================
-  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] conv_win_ps;
-  logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] conv_win;
-
-  always_comb begin
-    conv_win_ps = conv_win;
-    if (state == WINDOW) begin
-      for (int i = 0; i < KERNEL_DIM; i++)
-        for (int j = 0; j < KERNEL_DIM; j++)
-          conv_win_ps[i][j] = conv_rows_buf[i][loop_col_idx + j];
-    end
-  end
-
-  //===========================================================================
-  // Convolution Calculation (identical arithmetic to the working version)
-  //===========================================================================
-  assign conv_out_val_ps = calc_conv_win(kernel, conv_bias_val, conv_win);
-
-  //===========================================================================
   // Sequential
   //===========================================================================
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      state              <= IDLE;
-      arr_in_row_addr    <= 0;
-      buf_load_row_idx   <= 0;
-      kernel             <= 0;
-      conv_rows_buf      <= 0;
-      conv_out_val       <= 0;
-      conv_win           <= 0;
-      conv_rslt_out_addr <= 0;
-      cached_row_idx     <= 0;
-      rows_valid         <= 1'b0;
-      loop_col_idx       <= 0;
+      state            <= IDLE;
+      bufA <= 0; bufB <= 0; kernel <= 0;
+      arr_in_row_addr  <= 0;
+      buf_load_row_idx <= 0;
+      colA <= 0; colB <= 0;
+      baseA <= 0; baseB <= 0;
+      wr_validA <= 1'b0; wr_byteA <= 0; wr_colA <= 0;
+      wr_validB <= 1'b0; wr_byteB <= 0; wr_colB <= 0;
+      activeB <= 1'b0; last_served <= 1'b1;
     end
     else begin
-      state              <= next_state;
-      arr_in_row_addr    <= arr_in_row_addr_ps;
-      buf_load_row_idx   <= buf_load_row_idx_ps;
-      kernel             <= kernel_ps;
-      conv_rows_buf      <= conv_rows_buf_ps;
-      conv_out_val       <= conv_out_val_ps;
-      conv_win           <= conv_win_ps;
-      conv_rslt_out_addr <= conv_rslt_out_addr_ps;
-      cached_row_idx     <= cached_row_idx_ps;
-      rows_valid         <= rows_valid_ps;
-      loop_col_idx       <= loop_col_idx_ps;
+      state            <= next_state;
+      bufA <= bufA_ps; bufB <= bufB_ps; kernel <= kernel_ps;
+      arr_in_row_addr  <= arr_in_row_addr_ps;
+      buf_load_row_idx <= buf_load_row_idx_ps;
+      colA <= colA_ps; colB <= colB_ps;
+      baseA <= baseA_ps; baseB <= baseB_ps;
+      wr_validA <= wr_validA_ps; wr_byteA <= wr_byteA_ps; wr_colA <= wr_colA_ps;
+      wr_validB <= wr_validB_ps; wr_byteB <= wr_byteB_ps; wr_colB <= wr_colB_ps;
+      activeB <= activeB_ps; last_served <= last_served_ps;
     end
   end
 
   //===========================================================================
-  // Calculation Function : bias + sum(pixel*weight), ReLU, descale >>> 8, saturate
+  // Calculation Function (UNCHANGED): bias + sum(pixel*weight), ReLU, >>>8, sat
   //===========================================================================
   function automatic logic [7:0] calc_conv_win;
       input [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel;
@@ -333,7 +387,6 @@ module conv (
       logic signed [MAX_DOT_PROD_WIDTH-1:0] descale_val;
       begin
         acc = conv_bias_val;
-
         for (int kernel_row_idx = 0; kernel_row_idx < KERNEL_DIM; kernel_row_idx++) begin
           for (int kernel_col_idx = 0; kernel_col_idx < KERNEL_DIM; kernel_col_idx++) begin
             mult = $signed({1'b0, conv_win[kernel_row_idx][kernel_col_idx]}) *
@@ -341,7 +394,6 @@ module conv (
             acc  = acc + mult;
           end
         end
-
         if (acc < 0) begin
           calc_conv_win = 8'd0;
         end

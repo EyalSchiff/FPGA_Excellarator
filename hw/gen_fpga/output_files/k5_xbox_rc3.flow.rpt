@@ -1,5 +1,5 @@
 Flow report for k5_xbox_rc3
-Tue Jun 30 13:03:17 2026
+Tue Jun 30 15:03:22 2026
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,24 +41,24 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Tue Jun 30 13:03:17 2026           ;
+; Flow Status                        ; Successful - Tue Jun 30 15:03:21 2026           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; k5_xbox_rc3                                     ;
 ; Top-level Entity Name              ; de10lite_wrap                                   ;
 ; Family                             ; MAX 10                                          ;
 ; Device                             ; 10M50DAF484C7G                                  ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 18,027 / 49,760 ( 36 % )                        ;
-;     Total combinational functions  ; 17,450 / 49,760 ( 35 % )                        ;
-;     Dedicated logic registers      ; 4,242 / 49,760 ( 9 % )                          ;
-; Total registers                    ; 4242                                            ;
-; Total pins                         ; 185 / 360 ( 51 % )                              ;
+; Total logic elements               ; 20,592                                          ;
+;     Total combinational functions  ; 18,047                                          ;
+;     Dedicated logic registers      ; 4,506                                           ;
+; Total registers                    ; 4506                                            ;
+; Total pins                         ; 185                                             ;
 ; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 1,327,608 / 1,677,312 ( 79 % )                  ;
-; Embedded Multiplier 9-bit elements ; 62 / 288 ( 22 % )                               ;
-; Total PLLs                         ; 1 / 4 ( 25 % )                                  ;
-; UFM blocks                         ; 0 / 1 ( 0 % )                                   ;
-; ADC blocks                         ; 0 / 2 ( 0 % )                                   ;
+; Total memory bits                  ; 1,327,608                                       ;
+; Embedded Multiplier 9-bit elements ; 62                                              ;
+; Total PLLs                         ; 1                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -67,7 +67,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/30/2026 12:56:45 ;
+; Start date & time ; 06/30/2026 15:01:58 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; k5_xbox_rc3         ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------------------------------------------------------------+---------------+---------------+------------+
 ; Assignment Name                     ; Value                                                                                        ; Default Value ; Entity Name   ; Section Id ;
 +-------------------------------------+----------------------------------------------------------------------------------------------+---------------+---------------+------------+
-; COMPILER_SIGNATURE_ID               ; 7150022557607.178282420520641                                                                ; --            ; --            ; --         ;
+; COMPILER_SIGNATURE_ID               ; 7150022557607.178283171826092                                                                ; --            ; --            ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                                                           ; --            ; --            ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                                                            ; --            ; --            ; --         ;
 ; MISC_FILE                           ; /project/tsmc65/shared/k5_share/kuntz5/fpga/gen_de10lite/DE10Lite_ref/VGA_DATA/Img_RAM.bsf   ; --            ; --            ; --         ;
@@ -119,11 +119,8 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:11     ; 1.0                     ; 807 MB              ; 00:01:12                           ;
-; Fitter               ; 00:04:23     ; 1.0                     ; 1186 MB             ; 00:04:22                           ;
-; Timing Analyzer      ; 00:00:44     ; 1.0                     ; 918 MB              ; 00:00:42                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 701 MB              ; 00:00:03                           ;
-; Total                ; 00:06:21     ; --                      ; --                  ; 00:06:19                           ;
+; Analysis & Synthesis ; 00:01:19     ; 1.0                     ; 807 MB              ; 00:01:18                           ;
+; Total                ; 00:01:19     ; --                      ; --                  ; 00:01:18                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -133,9 +130,6 @@ on the Quartus Prime software download page.
 ; Module Name          ; Machine Hostname                              ; OS Name     ; OS Version ; Processor type ;
 +----------------------+-----------------------------------------------+-------------+------------+----------------+
 ; Analysis & Synthesis ; ip-10-70-141-50.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
-; Fitter               ; ip-10-70-141-50.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
-; Timing Analyzer      ; ip-10-70-141-50.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
-; Assembler            ; ip-10-70-141-50.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
 +----------------------+-----------------------------------------------+-------------+------------+----------------+
 
 
@@ -143,9 +137,6 @@ on the Quartus Prime software download page.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off k5_xbox_rc3 -c k5_xbox_rc3
-quartus_fit --read_settings_files=on --write_settings_files=off k5_xbox_rc3 -c k5_xbox_rc3
-quartus_sta k5_xbox_rc3 -c k5_xbox_rc3
-quartus_asm k5_xbox_rc3
 
 
 
