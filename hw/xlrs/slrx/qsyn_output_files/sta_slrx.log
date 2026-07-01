@@ -15,7 +15,7 @@ Info: Running Quartus Prime Timing Analyzer
     Info: Altera and sold by Altera or its authorized distributors.  Please
     Info: refer to the Altera Software License Subscription Agreements 
     Info: on the Quartus Prime software download page.
-    Info: Processing started: Tue Jun 30 19:58:17 2026
+    Info: Processing started: Wed Jul  1 12:06:01 2026
 Info: Command: quartus_sta slrx -c slrx
 Info: qsta_default_script.tcl version: #1
 Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
@@ -30,60 +30,60 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1200mV 85C Model
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -17.822
+Info (332146): Worst-case setup slack is -18.245
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -17.822          -26585.596 clk 
-Info (332146): Worst-case hold slack is 0.327
+    Info (332119):   -18.245          -45297.411 clk 
+Info (332146): Worst-case hold slack is 0.322
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.327               0.000 clk 
+    Info (332119):     0.322               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000           -6252.629 clk 
+    Info (332119):    -3.000           -8580.960 clk 
 Info: Analyzing Slow 1200mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -16.337
+Info (332146): Worst-case setup slack is -16.750
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -16.337          -24334.065 clk 
-Info (332146): Worst-case hold slack is 0.292
+    Info (332119):   -16.750          -41401.595 clk 
+Info (332146): Worst-case hold slack is 0.289
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.292               0.000 clk 
+    Info (332119):     0.289               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000           -6239.147 clk 
+    Info (332119):    -3.000           -8565.978 clk 
 Info: Analyzing Fast 1200mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -6.950
+Info (332146): Worst-case setup slack is -7.340
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.950          -10417.952 clk 
-Info (332146): Worst-case hold slack is 0.144
+    Info (332119):    -7.340          -17989.079 clk 
+Info (332146): Worst-case hold slack is 0.141
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.144               0.000 clk 
+    Info (332119):     0.141               0.000 clk 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -3.000
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.000           -3782.397 clk 
+    Info (332119):    -3.000           -5273.379 clk 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 818 megabytes
-    Info: Processing ended: Tue Jun 30 19:58:37 2026
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:19
+    Info: Peak virtual memory: 848 megabytes
+    Info: Processing ended: Wed Jul  1 12:06:32 2026
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:00:00

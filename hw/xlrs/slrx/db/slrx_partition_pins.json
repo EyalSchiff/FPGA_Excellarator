@@ -260,11 +260,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel_word_idx[0]",
+					"name" : "sel_word_idx[1]",
 					"strict" : false
 				},
 				{
-					"name" : "sel_word_idx[1]",
+					"name" : "sel_word_idx[0]",
 					"strict" : false
 				},
 				{
@@ -412,11 +412,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "host_regs_valid_pulse",
+					"name" : "host_regs_read_pulse[1]",
 					"strict" : false
 				},
 				{
-					"name" : "host_regs_read_pulse[1]",
+					"name" : "host_regs_valid_pulse",
 					"strict" : false
 				},
 				{

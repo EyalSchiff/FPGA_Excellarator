@@ -12,12 +12,25 @@
 //   loops STREAM -> LOAD_A directly between row-pairs with zero bubble
 //   cycles instead of returning to IDLE/DONE for a fresh host command.
 //
-//   Each block has its own 5-row input buffer and its own 25-MAC datapath,
-//   and streams its output row left->right at 1 pixel/cycle. The single write
-//   port is shared by a round-robin arbiter (one byte written per cycle).
+//   Each block has its own 5-row input buffer. The 25-tap MAC (5x5 kernel dot
+//   product) is split into a 2-STAGE PIPELINE to shorten the combinational
+//   critical path (STA showed the single-cycle 25-term accumulation was the
+//   Fmax-limiting path at ~42MHz for the full chip):
+//     Stage 1 (same cycle as the window fetch): sum the first 13 taps into
+//              partial1, the remaining 12 taps into partial2 -- roughly half
+//              the adder-chain depth of the original all-in-one-cycle sum --
+//              then register both partial sums.
+//     Stage 2 (next cycle): combine partial1 + partial2 + bias (one cheap
+//              add) then ReLU/descale/saturate -- a short combinational tail.
+//   This is a TRUE overlapping pipeline (stage 1 fetches column N+1 while
+//   stage 2 finalizes column N), so steady-state throughput is still one
+//   column per cycle -- only 1 extra cycle of pipeline fill/drain latency
+//   is added per row-pair, not per column. The write port and its
+//   round-robin arbiter are completely unchanged.
 //
 //   Arithmetic (bias + sum(pixel*weight), ReLU, descale >>>8, saturate) is
-//   IDENTICAL to the proven single-block version.
+//   IDENTICAL to the proven single-block version -- only WHEN the sum is
+//   totalled (over 2 cycles instead of 1) changed, not the math itself.
 //=============================================================================
 
 import xbox_def_pkg::*;
@@ -53,6 +66,7 @@ module conv (
   localparam KERNEL_SIZE       = KERNEL_DIM*KERNEL_DIM;
   localparam MAX_DOT_PROD_WIDTH= 16+$clog2(KERNEL_SIZE);
   localparam ARR_IDX_W         = $clog2(DIM_MAX_SIZE);
+  localparam PARTIAL_SPLIT     = 13; // first PARTIAL_SPLIT taps -> partial1, rest -> partial2
 
   //===========================================================================
   // Control
@@ -101,16 +115,23 @@ module conv (
   //===========================================================================
   // Per-block STREAM datapath
   //===========================================================================
-  logic [ARR_IDX_W:0]         colA, colA_ps;     // compute column (block A)
-  logic [ARR_IDX_W:0]         colB, colB_ps;     // compute column (block B)
+  logic [ARR_IDX_W:0]         colA, colA_ps;     // compute column (block A) -- stage 1 fetch pointer
+  logic [ARR_IDX_W:0]         colB, colB_ps;     // compute column (block B) -- stage 1 fetch pointer
   logic [XMEM_ADDR_WIDTH-1:0] baseA, baseA_ps;   // output base addr (row A)
   logic [XMEM_ADDR_WIDTH-1:0] baseB, baseB_ps;   // output base addr (row B)
 
-  logic                wr_validA, wr_validA_ps;  // output pipeline reg A
+  // Stage 1 -> Stage 2 pipeline registers (the new pipeline stage): holds the
+  // two partial sums for one column until stage 2 can finalize+forward them.
+  logic signed [MAX_DOT_PROD_WIDTH-1:0] p1A, p1A_ps, p2A, p2A_ps;
+  logic signed [MAX_DOT_PROD_WIDTH-1:0] p1B, p1B_ps, p2B, p2B_ps;
+  logic [ARR_IDX_W:0]                   p_colA, p_colA_ps, p_colB, p_colB_ps;
+  logic                                 p_validA, p_validA_ps, p_validB, p_validB_ps;
+
+  logic                wr_validA, wr_validA_ps;  // output pipeline reg A (stage 2 -> write-hold)
   logic [7:0]          wr_byteA,  wr_byteA_ps;
   logic [ARR_IDX_W:0]  wr_colA,   wr_colA_ps;
 
-  logic                wr_validB, wr_validB_ps;  // output pipeline reg B
+  logic                wr_validB, wr_validB_ps;  // output pipeline reg B (stage 2 -> write-hold)
   logic [7:0]          wr_byteB,  wr_byteB_ps;
   logic [ARR_IDX_W:0]  wr_colB,   wr_colB_ps;
 
@@ -118,21 +139,28 @@ module conv (
   logic                last_served, last_served_ps; // 0=A served last, 1=B served last
 
   //===========================================================================
-  // Two parallel 25-MAC blocks (combinational window + dot product)
+  // Two parallel 25-MAC blocks, split into 2 pipeline stages:
+  //   Stage 1 (combinational, this cycle's colA/colB): partial1/partial2
+  //   Stage 2 (combinational, from LAST cycle's registered p1/p2): final byte
   //===========================================================================
   logic [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] winA, winB;
-  logic [7:0]                                 resultA, resultB;
+  logic signed [MAX_DOT_PROD_WIDTH-1:0]       partial1A, partial2A, partial1B, partial2B;
+  logic [7:0]                                 resultA_final, resultB_final;
 
   always_comb begin
     for (int i = 0; i < KERNEL_DIM; i++)
       for (int j = 0; j < KERNEL_DIM; j++)
         winA[i][j] = bufA[i][colA + j];
-    resultA = calc_conv_win(kernel, conv_bias_val, winA);
+    partial1A = calc_conv_partial_sum(kernel, winA, 0, PARTIAL_SPLIT);
+    partial2A = calc_conv_partial_sum(kernel, winA, PARTIAL_SPLIT, KERNEL_SIZE);
+    resultA_final = calc_conv_finalize(p1A, p2A, conv_bias_val);
 
     for (int i = 0; i < KERNEL_DIM; i++)
       for (int j = 0; j < KERNEL_DIM; j++)
         winB[i][j] = bufB[i][colB + j];
-    resultB = calc_conv_win(kernel, conv_bias_val, winB);
+    partial1B = calc_conv_partial_sum(kernel, winB, 0, PARTIAL_SPLIT);
+    partial2B = calc_conv_partial_sum(kernel, winB, PARTIAL_SPLIT, KERNEL_SIZE);
+    resultB_final = calc_conv_finalize(p1B, p2B, conv_bias_val);
   end
 
   //===========================================================================
@@ -162,6 +190,7 @@ module conv (
   //===========================================================================
   logic pendingA, pendingB, grantA, grantB;
   logic ackA, ackB, slot_freeA, slot_freeB;
+  logic slot_free_pA, slot_free_pB;
   logic doneA, doneB;
 
   always_comb begin
@@ -185,6 +214,8 @@ module conv (
     buf_load_row_idx_ps = buf_load_row_idx;
     colA_ps = colA;  colB_ps = colB;
     baseA_ps = baseA; baseB_ps = baseB;
+    p1A_ps = p1A; p2A_ps = p2A; p_colA_ps = p_colA; p_validA_ps = p_validA;
+    p1B_ps = p1B; p2B_ps = p2B; p_colB_ps = p_colB; p_validB_ps = p_validB;
     wr_validA_ps = wr_validA; wr_byteA_ps = wr_byteA; wr_colA_ps = wr_colA;
     wr_validB_ps = wr_validB; wr_byteB_ps = wr_byteB; wr_colB_ps = wr_colB;
     activeB_ps = activeB; last_served_ps = last_served;
@@ -192,6 +223,7 @@ module conv (
 
     pendingA = 1'b0; pendingB = 1'b0; grantA = 1'b0; grantB = 1'b0;
     ackA = 1'b0; ackB = 1'b0; slot_freeA = 1'b0; slot_freeB = 1'b0;
+    slot_free_pA = 1'b0; slot_free_pB = 1'b0;
     doneA = 1'b0; doneB = 1'b0;
 
     case (state)
@@ -208,6 +240,7 @@ module conv (
             // host round trip)
             out_row_cnt_ps = 0;
             colA_ps = 0;            colB_ps = 0;
+            p_validA_ps = 1'b0;     p_validB_ps = 1'b0;
             wr_validA_ps = 1'b0;    wr_validB_ps = 1'b0;
             last_served_ps = 1'b1;  // so block A is served first
             baseA_ps  = conv_arr_out_addr + (out_row_cnt_ps * conv_arr_out_dim);
@@ -280,13 +313,16 @@ module conv (
       end
 
       //---------------------------------------------------------------------
-      // STREAM : both blocks compute in parallel; one shared write port
+      // STREAM : both blocks compute in parallel; one shared write port.
+      // Compute is now a 2-stage pipeline (stage1: fetch+partial-sum,
+      // stage2: finalize+forward to the existing write-hold register); the
+      // write port arbitration itself is UNCHANGED from the proven design.
       //---------------------------------------------------------------------
       STREAM: begin
         pendingA = wr_validA;
         pendingB = wr_validB && activeB;
 
-        // round-robin arbiter for the single write port
+        // round-robin arbiter for the single write port (unchanged)
         if (pendingA && pendingB) begin
           grantA = (last_served == 1'b1);   // B served last -> serve A now
           grantB = ~grantA;
@@ -315,41 +351,74 @@ module conv (
         slot_freeA = (!wr_validA) || ackA;
         slot_freeB = (!wr_validB) || ackB;
 
-        // compute stage : block A
+        // ---- stage 2 -> write-hold : forward the finalized byte for the
+        // column that finished pipeline stage 1 last cycle ----
         if (slot_freeA) begin
-          if (colA < conv_arr_out_dim) begin
-            wr_byteA_ps = resultA;
-            wr_colA_ps  = colA;
-            wr_validA_ps= 1'b1;
-            colA_ps     = colA + 1;
+          if (p_validA) begin
+            wr_byteA_ps  = resultA_final;
+            wr_colA_ps   = p_colA;
+            wr_validA_ps = 1'b1;
           end
           else begin
             wr_validA_ps = 1'b0;
           end
         end
 
-        // compute stage : block B
         if (activeB && slot_freeB) begin
-          if (colB < conv_arr_out_dim) begin
-            wr_byteB_ps = resultB;
-            wr_colB_ps  = colB;
-            wr_validB_ps= 1'b1;
-            colB_ps     = colB + 1;
+          if (p_validB) begin
+            wr_byteB_ps  = resultB_final;
+            wr_colB_ps   = p_colB;
+            wr_validB_ps = 1'b1;
           end
           else begin
             wr_validB_ps = 1'b0;
           end
         end
 
-        // termination : both rows fully computed and drained
-        doneA = (colA >= conv_arr_out_dim) && !wr_validA;
-        doneB = (!activeB) || ((colB >= conv_arr_out_dim) && !wr_validB);
+        // ---- stage 1 -> stage 2 : fetch the next column's window and
+        // compute its partial sums, as soon as the stage-2 slot has room ----
+        slot_free_pA = (!p_validA) || slot_freeA;
+        slot_free_pB = (!p_validB) || slot_freeB;
+
+        if (slot_free_pA) begin
+          if (colA < conv_arr_out_dim) begin
+            p1A_ps      = partial1A;
+            p2A_ps      = partial2A;
+            p_colA_ps   = colA;
+            p_validA_ps = 1'b1;
+            colA_ps     = colA + 1;
+          end
+          else begin
+            p_validA_ps = 1'b0;
+          end
+        end
+
+        if (activeB && slot_free_pB) begin
+          if (colB < conv_arr_out_dim) begin
+            p1B_ps      = partial1B;
+            p2B_ps      = partial2B;
+            p_colB_ps   = colB;
+            p_validB_ps = 1'b1;
+            colB_ps     = colB + 1;
+          end
+          else begin
+            p_validB_ps = 1'b0;
+          end
+        end
+
+        // termination : both blocks' ENTIRE pipeline (stage1, stage2, and
+        // the write-hold register) must be drained -- not just the column
+        // counter -- since results can still be in flight for 2 more cycles
+        // after the last column is fetched.
+        doneA = (colA >= conv_arr_out_dim) && !p_validA && !wr_validA;
+        doneB = (!activeB) || ((colB >= conv_arr_out_dim) && !p_validB && !wr_validB);
         if (doneA && doneB) begin
           if (out_row_cnt < (half_rows - 1)) begin
             // more row-pairs remain: loop straight back into LOAD_A with zero bubble
             // cycles -- no DONE/IDLE/host round trip between row-pairs
             out_row_cnt_ps = out_row_cnt + 1'b1;
             colA_ps = 0;            colB_ps = 0;
+            p_validA_ps = 1'b0;     p_validB_ps = 1'b0;
             wr_validA_ps = 1'b0;    wr_validB_ps = 1'b0;
             last_served_ps = 1'b1;
             baseA_ps  = conv_arr_out_addr + (out_row_cnt_ps * conv_arr_out_dim);
@@ -386,6 +455,8 @@ module conv (
       buf_load_row_idx <= 0;
       colA <= 0; colB <= 0;
       baseA <= 0; baseB <= 0;
+      p1A <= 0; p2A <= 0; p_colA <= 0; p_validA <= 1'b0;
+      p1B <= 0; p2B <= 0; p_colB <= 0; p_validB <= 1'b0;
       wr_validA <= 1'b0; wr_byteA <= 0; wr_colA <= 0;
       wr_validB <= 1'b0; wr_byteB <= 0; wr_colB <= 0;
       activeB <= 1'b0; last_served <= 1'b1;
@@ -398,6 +469,8 @@ module conv (
       buf_load_row_idx <= buf_load_row_idx_ps;
       colA <= colA_ps; colB <= colB_ps;
       baseA <= baseA_ps; baseB <= baseB_ps;
+      p1A <= p1A_ps; p2A <= p2A_ps; p_colA <= p_colA_ps; p_validA <= p_validA_ps;
+      p1B <= p1B_ps; p2B <= p2B_ps; p_colB <= p_colB_ps; p_validB <= p_validB_ps;
       wr_validA <= wr_validA_ps; wr_byteA <= wr_byteA_ps; wr_colA <= wr_colA_ps;
       wr_validB <= wr_validB_ps; wr_byteB <= wr_byteB_ps; wr_colB <= wr_colB_ps;
       activeB <= activeB_ps; last_served <= last_served_ps;
@@ -406,34 +479,50 @@ module conv (
   end
 
   //===========================================================================
-  // Calculation Function (UNCHANGED): bias + sum(pixel*weight), ReLU, >>>8, sat
+  // Calculation Functions -- SAME arithmetic as the proven single-cycle
+  // version, just split across the term range so it can be summed over 2
+  // cycles: calc_conv_partial_sum sums taps [term_start, term_end) only
+  // (no bias, no ReLU/descale/saturate yet); calc_conv_finalize combines
+  // both partial sums + bias then applies ReLU/descale/saturate exactly as
+  // calc_conv_win used to in one shot.
   //===========================================================================
-  function automatic logic [7:0] calc_conv_win;
+  function automatic logic signed [MAX_DOT_PROD_WIDTH-1:0] calc_conv_partial_sum;
       input [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] kernel;
-      input signed [MAX_DOT_PROD_WIDTH-1:0]       conv_bias_val;
       input [KERNEL_DIM-1:0][KERNEL_DIM-1:0][7:0] conv_win;
+      input int term_start;
+      input int term_end; // exclusive
 
       logic signed [MAX_DOT_PROD_WIDTH-1:0] acc;
       logic signed [MAX_DOT_PROD_WIDTH-1:0] mult;
+      begin
+        acc = 0;
+        for (int t = term_start; t < term_end; t++) begin
+          mult = $signed({1'b0, conv_win[t / KERNEL_DIM][t % KERNEL_DIM]}) *
+                 $signed(kernel[t / KERNEL_DIM][t % KERNEL_DIM]);
+          acc = acc + mult;
+        end
+        calc_conv_partial_sum = acc;
+      end
+  endfunction
+
+  function automatic logic [7:0] calc_conv_finalize;
+      input signed [MAX_DOT_PROD_WIDTH-1:0] partial1;
+      input signed [MAX_DOT_PROD_WIDTH-1:0] partial2;
+      input signed [MAX_DOT_PROD_WIDTH-1:0] conv_bias_val;
+
+      logic signed [MAX_DOT_PROD_WIDTH-1:0] acc;
       logic signed [MAX_DOT_PROD_WIDTH-1:0] descale_val;
       begin
-        acc = conv_bias_val;
-        for (int kernel_row_idx = 0; kernel_row_idx < KERNEL_DIM; kernel_row_idx++) begin
-          for (int kernel_col_idx = 0; kernel_col_idx < KERNEL_DIM; kernel_col_idx++) begin
-            mult = $signed({1'b0, conv_win[kernel_row_idx][kernel_col_idx]}) *
-                   $signed(kernel[kernel_row_idx][kernel_col_idx]);
-            acc  = acc + mult;
-          end
-        end
+        acc = conv_bias_val + partial1 + partial2;
         if (acc < 0) begin
-          calc_conv_win = 8'd0;
+          calc_conv_finalize = 8'd0;
         end
         else begin
           descale_val = acc >>> 8;
           if (descale_val > 255)
-            calc_conv_win = 8'd255;
+            calc_conv_finalize = 8'd255;
           else
-            calc_conv_win = descale_val[7:0];
+            calc_conv_finalize = descale_val[7:0];
         end
       end
   endfunction

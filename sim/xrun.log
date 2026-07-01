@@ -1,5 +1,5 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Jul 01, 2026 at 08:10:56 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jul 01, 2026 at 12:16:20 UTC
 xrun
 	-sv
 	-f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
@@ -98,10 +98,10 @@ uart_tb.sv: Remote Python changed UART clk_div_cntr value to     4 (decimal)
 uart_tb.sv: Remote Python changed UART ns_per_bit_actual from 8680.000000 to 50.000000 
 
 
- 1671402565ns uart_tb.sv: Detected remote quit command. Quitting 
+ 252987705ns uart_tb.sv: Detected remote quit command. Quitting 
 
 
-Simulation complete via $finish(1) at time 1671402565 NS + 1
+Simulation complete via $finish(1) at time 252987705 NS + 1
 /project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s013: Exiting on Jul 01, 2026 at 08:18:45 UTC  (total: 00:07:49)
+TOOL:	xrun(64)	23.09-s013: Exiting on Jul 01, 2026 at 12:17:09 UTC  (total: 00:00:49)
