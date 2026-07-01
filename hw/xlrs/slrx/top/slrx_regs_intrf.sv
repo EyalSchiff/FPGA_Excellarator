@@ -16,45 +16,45 @@ interface slrx_regs_intrf ;
   logic [$clog2(NUM_SLRX_CMDS)-1:0] slrx_cmd;
 
   logic xlr_done;
-  logic xlr_done_ack ; 
+  logic xlr_done_ack ;
 
   modport host (
 
-    output  host_regs,            
+    output  host_regs,
     output  host_regs_valid_pulse,
-   
-    `ifdef XREGS_OUT_EN    
-    input   host_regs_data_out,                       
-    input   host_regs_valid_out, 
-    output  host_regs_read_pulse,     
+
+    `ifdef XREGS_OUT_EN
+    input   host_regs_data_out,
+    input   host_regs_valid_out,
+    output  host_regs_read_pulse,
     `endif
-  
+
     output xlr_start,
     output /* [$clog2(NUM_SLRX_CMDS)-1:0]*/ slrx_cmd,
-    
+
     input  xlr_done,
-    output xlr_done_ack  
-  
+    output xlr_done_ack
+
   );
 
   modport xlr (
 
-    input  host_regs,            
+    input  host_regs,
     input  host_regs_valid_pulse,
-  
+
 
     `ifdef XREGS_OUT_EN
-    output host_regs_data_out,     
-    output host_regs_valid_out,  
+    output host_regs_data_out,
+    output host_regs_valid_out,
     input  host_regs_read_pulse,
-    `endif    
-    
+    `endif
+
     input xlr_start,
     input /* [XLR_START_RI][$clog2(NUM_SLRX_CMDS)-1:0] */ slrx_cmd,
-    
+
     output xlr_done,
     input  xlr_done_ack
-  
+
   );
 
 endinterface

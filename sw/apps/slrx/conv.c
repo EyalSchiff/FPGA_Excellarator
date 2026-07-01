@@ -63,33 +63,29 @@ void conv_xlr_setup(uint8_t* conv_arr_out,
 }
 
 //------------------------------------------------------------------------------------------------------------
-// Accelerator window : trigger the HW to compute TWO output rows in parallel:
-//   block A -> row out_row_idx           (top half)
-//   block B -> row out_row_idx+half_rows (bottom half)
-// out_col_idx stays in the signature for interface compatibility (always 0).
+// Accelerator window : trigger the HW to compute the ENTIRE output feature-map.
+// The FSM loops internally over every row-pair (block A -> row r, block B -> row
+// r+half_rows) -- a single host round trip replaces what used to be one round trip
+// per row-pair.
 //------------------------------------------------------------------------------------------------------------
-void conv_window_xlr(int out_row_idx,
-                     int out_col_idx) {
+void conv_window_xlr(void) {
 
     #ifdef HLCM
     printf("HLCM does not support HW acceleration, quitting\n\n");
     bm_quit_app();
     #else
-    HOST_REG(OUT_ROW_IDX_RI) = out_row_idx;
-    HOST_REG(OUT_COL_IDX_RI) = out_col_idx;   // always 0 : HW loops the columns
     HOST_REG(XLR_START_RI)   = CONV_WINDOW;
 
     while (!HOST_REG(XLR_DONE_RI)) {
-       // poll until both rows are done
+       // poll until the ENTIRE output feature-map has been computed by HW
     }
     #endif
 }
 
 //------------------------------------------------------------------------------------------------------------
 // Top convolution.
-//   Accelerated path : the HW computes TWO rows per call (row r and row r+half),
-//                      so the driver loops only over the FIRST half of the rows:
-//                      half_rows = ceil(out_dim/2) calls total.
+//   Accelerated path : one CONV_SETUP + one CONV_WINDOW round trip total -- the HW
+//                      loops all row-pairs internally.
 //   Scalar path      : the usual nested per-pixel loop.
 //------------------------------------------------------------------------------------------------------------
 void conv(uint8_t* conv_arr_out,
@@ -98,17 +94,11 @@ void conv(uint8_t* conv_arr_out,
           int8_t*  kernel_w,
           int32_t  kernel_b) {
 
-    int out_dim = arr_in_dim - CONV_KERNEL_DIM + 1;
-
     #ifdef CONV_XON
-    int half_rows = (out_dim + 1) / 2;   // must match the HW: ceil(out_dim/2)
-
     conv_xlr_setup(conv_arr_out, conv_arr_in, arr_in_dim, kernel_w, kernel_b);
-
-    for (int out_row_idx = 0; out_row_idx < half_rows; out_row_idx++) {
-        conv_window_xlr(out_row_idx, 0);   // HW does row r and row r+half_rows
-    }
+    conv_window_xlr();   // HW computes the entire output feature-map internally
     #else
+    int out_dim = arr_in_dim - CONV_KERNEL_DIM + 1;
     for (int out_row_idx = 0; out_row_idx < out_dim; out_row_idx++) {
         for (int out_col_idx = 0; out_col_idx < out_dim; out_col_idx++) {
             conv_window_nox(conv_arr_out, conv_arr_in, arr_in_dim,

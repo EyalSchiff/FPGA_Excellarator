@@ -32,9 +32,13 @@ module pool (
   logic [XMEM_ADDR_WIDTH-1:0] pool_rslt_out_addr, pool_rslt_out_addr_ps;  
 
   logic [ARR_IDX_W:0] pool_arr_in_dim ;
-  logic [ARR_IDX_W:0] pool_arr_out_dim;  
-  
-  logic [ARR_IDX_W-1:0] pool_out_row_idx;  
+  logic [ARR_IDX_W:0] pool_arr_out_dim;
+
+  // Internal output-row loop counter: ONE POOL_CALC command now processes ALL output
+  // rows (0..pool_arr_out_dim-1) inside the FSM, looping WRITE -> READ_ROWS directly
+  // (zero bubble cycles) instead of returning to the host for a per-row command.
+  // OUT_ROW_IDX_RI is no longer read by this module.
+  logic [ARR_IDX_W-1:0] out_row_cnt, out_row_cnt_ps;
 
   logic [XMEM_ADDR_WIDTH-1:0] arr_in_row_addr_ps, arr_in_row_addr, arr_in_next_row_addr, arr_in_next_row_addr_s ;
 
@@ -55,11 +59,10 @@ module pool (
   assign pool_start          = slrx_regs_intrf.host_regs_valid_pulse[XLR_START_RI] && pool_active ;  
   assign clear_done_on_read  = pool_active && slrx_regs_intrf.xlr_done_ack ; 
 
-  assign pool_arr_in_addr    = slrx_regs_intrf.host_regs[ARR_IN_ADDR_RI];  // Conv Input Image  Reg Index  
+  assign pool_arr_in_addr    = slrx_regs_intrf.host_regs[ARR_IN_ADDR_RI];  // Conv Input Image  Reg Index
   assign pool_arr_out_addr   = slrx_regs_intrf.host_regs[ARR_OUT_ADDR_RI]; // Conv output feature-map Reg Index
   assign pool_arr_in_dim     = slrx_regs_intrf.host_regs[ARR_IN_DIM_RI];   // Conv Input array dimension
-  assign pool_out_row_idx    = slrx_regs_intrf.host_regs[OUT_ROW_IDX_RI];  // output array row index ,  Reg Index  
-  
+
   assign pool_arr_out_dim = pool_arr_in_dim/2 ;
  
   assign arr_in_next_row_addr = arr_in_row_addr + pool_arr_in_dim ;
@@ -76,27 +79,33 @@ module pool (
    mem_intf_read.mem_size_bytes  = pool_arr_in_dim;   // default
    mem_intf_read.mem_start_addr  = 0 ;                // default   
 
-   mem_intf_write.mem_size_bytes = pool_arr_out_dim;   
+   mem_intf_write.mem_size_bytes = pool_arr_out_dim;
    mem_intf_write.mem_data       = pool_out_buf ;
    mem_intf_write.mem_start_addr = pool_rslt_out_addr ;
-   
-   pool_rslt_out_addr_ps = pool_arr_out_addr + (pool_out_row_idx*pool_arr_out_dim)  ; 
-   
-   mem_intf_read.mem_req = 0;
-   mem_intf_write.mem_req = 0;   
-   pool_done = 0;  
-   load_next_row_idx = load_row_idx;         
-   pool_in_buf_ps  = pool_in_buf  ; 
 
-    arr_in_row_addr_ps = pool_arr_in_addr + (pool_out_row_idx*2*pool_arr_in_dim)  ;     
+   pool_rslt_out_addr_ps = pool_arr_out_addr + (out_row_cnt*pool_arr_out_dim)  ;
+
+   mem_intf_read.mem_req = 0;
+   mem_intf_write.mem_req = 0;
+   pool_done = 0;
+   load_next_row_idx = load_row_idx;
+   pool_in_buf_ps  = pool_in_buf  ;
+   out_row_cnt_ps  = out_row_cnt ;
+
+    arr_in_row_addr_ps = pool_arr_in_addr + (out_row_cnt*2*pool_arr_in_dim)  ;
 
    case (state) // State Machine case
     
       IDLE: if (pool_start) begin
        pool_done = 0;
        if      (slrx_cmd==POOL_SETUP)  next_state = SETUP;    // Setup only, pending for execution
-       else if (slrx_cmd==POOL_CALC) next_state = READ_ROWS;  // Proceed to execution           
-       load_next_row_idx = 0;       
+       else if (slrx_cmd==POOL_CALC) begin
+         next_state = READ_ROWS;  // Proceed to execution -- HW loops ALL output rows internally
+         out_row_cnt_ps         = 0;
+         arr_in_row_addr_ps     = pool_arr_in_addr;                  // row 0 of the input image
+         pool_rslt_out_addr_ps  = pool_arr_out_addr;                 // row 0 of the output image
+       end
+       load_next_row_idx = 0;
       end
       
       SETUP: begin
@@ -131,10 +140,21 @@ module pool (
       WRITE: begin
         mem_intf_write.mem_req = 1;
         if (mem_intf_write.mem_ack) begin
-          next_state = DONE;
-          mem_intf_write.mem_req = 0;         
+          mem_intf_write.mem_req = 0;
+          if (out_row_cnt < (pool_arr_out_dim - 1)) begin
+            // more output rows remain: loop straight back into READ_ROWS with zero
+            // bubble cycles -- no DONE/IDLE/host round trip between rows
+            out_row_cnt_ps         = out_row_cnt + 1'b1;
+            arr_in_row_addr_ps     = pool_arr_in_addr  + (out_row_cnt_ps*2*pool_arr_in_dim);
+            pool_rslt_out_addr_ps  = pool_arr_out_addr + (out_row_cnt_ps*pool_arr_out_dim);
+            load_next_row_idx      = 0;
+            next_state             = READ_ROWS;
+          end
+          else begin
+            next_state = DONE;
+          end
         end
-      end 
+      end
 
       DONE: begin
         pool_done = 1;
@@ -162,15 +182,17 @@ module pool (
       pool_in_buf            <= 0;
       pool_out_buf           <= 0;
       pool_rslt_out_addr     <= 0;
-    end else begin     
+      out_row_cnt            <= 0;
+    end else begin
       state <= next_state ;
       arr_in_row_addr        <= arr_in_row_addr_ps ;
-      arr_in_next_row_addr_s <= arr_in_next_row_addr ;     
+      arr_in_next_row_addr_s <= arr_in_next_row_addr ;
       load_row_idx           <= load_next_row_idx;
-      pool_in_buf            <= pool_in_buf_ps; 
-      pool_out_buf           <= pool_out_buf_ps; 
-      pool_rslt_out_addr     <= pool_rslt_out_addr_ps;      
-    end    
+      pool_in_buf            <= pool_in_buf_ps;
+      pool_out_buf           <= pool_out_buf_ps;
+      pool_rslt_out_addr     <= pool_rslt_out_addr_ps;
+      out_row_cnt            <= out_row_cnt_ps;
+    end
   end
    
   //------------------------------------------------------------------------

@@ -2,11 +2,15 @@
 // File: conv.sv
 // Description: Convolution Accelerator (5x5) - DUAL parallel compute blocks
 //
-//   Contract (unchanged interface): ONE CONV_WINDOW computes TWO output rows.
-//     - Block A : output row  rA = out_row_idx              (top half)
-//     - Block B : output row  rB = out_row_idx + half_rows  (bottom half)
-//   half_rows = ceil(out_dim/2). The C driver loops r = 0..half_rows-1,
-//   so the number of accelerator calls is halved (out_dim -> out_dim/2).
+//   Contract: ONE CONV_WINDOW command computes the ENTIRE output feature-map.
+//     The FSM internally loops row-pair index 0..half_rows-1; for each
+//     row-pair:
+//     - Block A : output row  rA = row_pair_idx              (top half)
+//     - Block B : output row  rB = row_pair_idx + half_rows  (bottom half)
+//   half_rows = ceil(out_dim/2). The C driver issues CONV_SETUP once and
+//   CONV_WINDOW once per layer (no per-row-pair host round trip) -- the FSM
+//   loops STREAM -> LOAD_A directly between row-pairs with zero bubble
+//   cycles instead of returning to IDLE/DONE for a fresh host command.
 //
 //   Each block has its own 5-row input buffer and its own 25-MAC datapath,
 //   and streams its output row left->right at 1 pixel/cycle. The single write
@@ -77,10 +81,15 @@ module conv (
 
   logic [ARR_IDX_W:0] conv_arr_in_dim;
   logic [ARR_IDX_W:0] conv_arr_out_dim;
-  logic [ARR_IDX_W-1:0] conv_out_row_idx;
 
-  logic [ARR_IDX_W:0] half_rows;          // ceil(out_dim/2) = block A row count
-  logic [ARR_IDX_W:0] row_b;              // block B output row = out_row_idx + half_rows
+  logic [ARR_IDX_W:0] half_rows;          // ceil(out_dim/2) = number of row-pair iterations
+  logic [ARR_IDX_W:0] row_b;              // current row-pair's block B row = out_row_cnt + half_rows
+
+  // Internal row-pair loop counter: ONE CONV_WINDOW command now processes ALL row-pairs
+  // (0..half_rows-1) inside the FSM, looping STREAM -> LOAD_A directly (zero bubble
+  // cycles) instead of returning to the host for a per-row-pair command.
+  // OUT_ROW_IDX_RI is no longer read by this module.
+  logic [ARR_IDX_W:0] out_row_cnt, out_row_cnt_ps;
 
   //===========================================================================
   // Row read addressing (shared by the two load phases)
@@ -142,11 +151,10 @@ module conv (
   assign conv_arr_in_addr  = slrx_regs_intrf.host_regs[ARR_IN_ADDR_RI];
   assign conv_arr_out_addr = slrx_regs_intrf.host_regs[ARR_OUT_ADDR_RI];
   assign conv_arr_in_dim   = slrx_regs_intrf.host_regs[ARR_IN_DIM_RI];
-  assign conv_out_row_idx  = slrx_regs_intrf.host_regs[OUT_ROW_IDX_RI];
 
   assign conv_arr_out_dim  = conv_arr_in_dim - (KERNEL_DIM - 1);
-  assign half_rows         = (conv_arr_out_dim + 1) >> 1;          // ceil(out_dim/2)
-  assign row_b             = conv_out_row_idx + half_rows;
+  assign half_rows         = (conv_arr_out_dim + 1) >> 1;          // ceil(out_dim/2) = row-pair iterations
+  assign row_b             = out_row_cnt + half_rows;              // current row-pair's block B row
   assign is_last_load_row  = (buf_load_row_idx == (KERNEL_DIM - 1));
 
   //===========================================================================
@@ -180,6 +188,7 @@ module conv (
     wr_validA_ps = wr_validA; wr_byteA_ps = wr_byteA; wr_colA_ps = wr_colA;
     wr_validB_ps = wr_validB; wr_byteB_ps = wr_byteB; wr_colB_ps = wr_colB;
     activeB_ps = activeB; last_served_ps = last_served;
+    out_row_cnt_ps = out_row_cnt;
 
     pendingA = 1'b0; pendingB = 1'b0; grantA = 1'b0; grantB = 1'b0;
     ackA = 1'b0; ackB = 1'b0; slot_freeA = 1'b0; slot_freeB = 1'b0;
@@ -194,15 +203,18 @@ module conv (
             next_state = READ_KERNEL;
           end
           else if (slrx_cmd == CONV_WINDOW) begin
-            // init both blocks
+            // init both blocks -- internal loop starts at row-pair 0; the FSM will loop
+            // ALL row-pairs (0..half_rows-1) before asserting DONE (no per-row-pair
+            // host round trip)
+            out_row_cnt_ps = 0;
             colA_ps = 0;            colB_ps = 0;
             wr_validA_ps = 1'b0;    wr_validB_ps = 1'b0;
             last_served_ps = 1'b1;  // so block A is served first
-            baseA_ps  = conv_arr_out_addr + (conv_out_row_idx * conv_arr_out_dim);
-            baseB_ps  = conv_arr_out_addr + (row_b           * conv_arr_out_dim);
-            activeB_ps = (row_b < conv_arr_out_dim);
+            baseA_ps  = conv_arr_out_addr + (out_row_cnt_ps * conv_arr_out_dim);
+            baseB_ps  = conv_arr_out_addr + ((out_row_cnt_ps + half_rows) * conv_arr_out_dim);
+            activeB_ps = ((out_row_cnt_ps + half_rows) < conv_arr_out_dim);
             // start loading block A's 5 input rows
-            arr_in_row_addr_ps  = conv_arr_in_addr + (conv_out_row_idx * conv_arr_in_dim);
+            arr_in_row_addr_ps  = conv_arr_in_addr + (out_row_cnt_ps * conv_arr_in_dim);
             buf_load_row_idx_ps = 0;
             next_state = LOAD_A;
           end
@@ -332,8 +344,25 @@ module conv (
         // termination : both rows fully computed and drained
         doneA = (colA >= conv_arr_out_dim) && !wr_validA;
         doneB = (!activeB) || ((colB >= conv_arr_out_dim) && !wr_validB);
-        if (doneA && doneB)
-          next_state = DONE;
+        if (doneA && doneB) begin
+          if (out_row_cnt < (half_rows - 1)) begin
+            // more row-pairs remain: loop straight back into LOAD_A with zero bubble
+            // cycles -- no DONE/IDLE/host round trip between row-pairs
+            out_row_cnt_ps = out_row_cnt + 1'b1;
+            colA_ps = 0;            colB_ps = 0;
+            wr_validA_ps = 1'b0;    wr_validB_ps = 1'b0;
+            last_served_ps = 1'b1;
+            baseA_ps  = conv_arr_out_addr + (out_row_cnt_ps * conv_arr_out_dim);
+            baseB_ps  = conv_arr_out_addr + ((out_row_cnt_ps + half_rows) * conv_arr_out_dim);
+            activeB_ps = ((out_row_cnt_ps + half_rows) < conv_arr_out_dim);
+            arr_in_row_addr_ps  = conv_arr_in_addr + (out_row_cnt_ps * conv_arr_in_dim);
+            buf_load_row_idx_ps = 0;
+            next_state = LOAD_A;
+          end
+          else begin
+            next_state = DONE;
+          end
+        end
       end
 
       //---------------------------------------------------------------------
@@ -360,6 +389,7 @@ module conv (
       wr_validA <= 1'b0; wr_byteA <= 0; wr_colA <= 0;
       wr_validB <= 1'b0; wr_byteB <= 0; wr_colB <= 0;
       activeB <= 1'b0; last_served <= 1'b1;
+      out_row_cnt <= 0;
     end
     else begin
       state            <= next_state;
@@ -371,6 +401,7 @@ module conv (
       wr_validA <= wr_validA_ps; wr_byteA <= wr_byteA_ps; wr_colA <= wr_colA_ps;
       wr_validB <= wr_validB_ps; wr_byteB <= wr_byteB_ps; wr_colB <= wr_colB_ps;
       activeB <= activeB_ps; last_served <= last_served_ps;
+      out_row_cnt <= out_row_cnt_ps;
     end
   end
 

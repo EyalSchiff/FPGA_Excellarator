@@ -28,21 +28,20 @@ void pool_xlr_setup(uint8_t* pool_arr_out,  // Pool output feature-map
 
 //------------------------------------------------------------------------------------------------------------
 
-void pool_window_xlr(int out_row_idx) { // output array row index
+void pool_window_xlr(void) { // HW loops ALL output rows internally
 
-    #ifdef HLCM    
+    #ifdef HLCM
     printf("HLCM does not support HW acceleration, quitting\n\n");
     bm_quit_app();
     #else
 
-    HOST_REG(OUT_ROW_IDX_RI) = out_row_idx; 
     HOST_REG(XLR_START_RI)  = POOL_CALC ; // POOL_CALC is defined at included ../../../hw/top/slrx_enums.svh
-  
+
     while (!HOST_REG(XLR_DONE_RI)) {
-       //printf("Pool window Polling ...\n"); // comment for quite execution
+       // poll until ALL output rows have been computed by HW
     }
-    
-    #endif 
+
+    #endif
 }
 
 //------------------------------------------------------------------------------------------------------------
@@ -78,21 +77,17 @@ void pool_window_nox(uint8_t* pool_arr_out,     // Pool-Max output feature-map
 //------------------------------------------------------------------------------------------------------------
 
 void pool_max_2x2(uint8_t* pool_arr_out,         // Pool-Max output feature-map
-                  uint8_t* pool_arr_in,          // Pool-Max Input Image  
-                  int     arr_in_dim) {    // Pool-Max Input dimensions 
-
-    int pool_out_dim = arr_in_dim/2;
+                  uint8_t* pool_arr_in,          // Pool-Max Input Image
+                  int     arr_in_dim) {    // Pool-Max Input dimensions
 
       #ifdef POOL_XON
-      pool_xlr_setup(pool_arr_out, pool_arr_in, arr_in_dim);              
-      #endif
-
-    for (int out_row_idx = 0; out_row_idx < pool_out_dim; out_row_idx++) {
-      #ifdef POOL_XON
-      pool_window_xlr(out_row_idx);
+      pool_xlr_setup(pool_arr_out, pool_arr_in, arr_in_dim);
+      pool_window_xlr();   // HW computes every output row internally
       #else
-      pool_window_nox(pool_arr_out,  pool_arr_in, out_row_idx, pool_out_dim);
-      #endif  
-    }      
+      int pool_out_dim = arr_in_dim/2;
+      for (int out_row_idx = 0; out_row_idx < pool_out_dim; out_row_idx++) {
+          pool_window_nox(pool_arr_out,  pool_arr_in, out_row_idx, pool_out_dim);
+      }
+      #endif
 }
 

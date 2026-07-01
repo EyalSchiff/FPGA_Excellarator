@@ -9,13 +9,17 @@ module linear (
   mem_intf_write.client_write mem_intf_write
 );
 
-  // Contract: ONE LIN_CALC computes TWO output elements.
-  //   Block A : out_col = lin_out_col_idx
-  //   Block B : out_col = lin_out_col_idx + half_cols
-  //   half_cols = ceil(out_dim/2). C driver loops c = 0..half_cols-1.
-  // in_vec is loaded once at LIN_SETUP and shared (read-only) by both blocks.
+  // Contract: ONE LIN_CALC command computes the ENTIRE output vector.
+  //   The FSM internally loops column-pair index 0,2,4,... :
+  //     Block A : out_col = out_col_cnt
+  //     Block B : out_col = out_col_cnt + 1  (when in range)
+  //   in_vec is loaded once at LIN_SETUP and shared (read-only) by both blocks.
+  //   The host issues LIN_SETUP once and LIN_CALC once per layer (no per-pair
+  //   host round trip) -- the FSM loops WRITE -> READ_WGTA directly between
+  //   column-pairs with zero bubble cycles. BIASA/BIASB (adjacent int32_t
+  //   array elements) are fetched in a single merged read.
 
-  enum {IDLE, READ_IN_VEC, READ_WGTA, READ_BIASA, READ_WGTB, READ_BIASB, CALC, WRITE, DONE} next_state, state;
+  enum {IDLE, READ_IN_VEC, READ_WGTA, READ_WGTB, READ_BIAS, CALC, WRITE, DONE} next_state, state;
 
   localparam DIM_MAX_SIZE = 32;
   localparam MAX_DOT_PROD_WIDTH = 16+$clog2(DIM_MAX_SIZE);
@@ -34,9 +38,14 @@ module linear (
   logic [XMEM_ADDR_WIDTH-1:0] lin_rslt_out_addr, lin_rslt_out_addr_ps;
 
   logic [ARR_IDX_W:0] lin_arr_in_dim, lin_arr_out_dim;
-  logic [ARR_IDX_W-1:0] lin_out_col_idx;
-  logic [ARR_IDX_W:0] half_cols, col_b;
+  logic [ARR_IDX_W:0] col_b;
   logic activeB, activeB_ps;
+
+  // Internal output-column-pair loop counter: ONE LIN_CALC command now processes ALL
+  // output columns (0,2,4,... ) inside the FSM, looping WRITE -> READ_WGTA directly
+  // (zero bubble cycles) instead of returning to the host for a per-pair command.
+  // OUT_COL_IDX_RI is no longer read by this module.
+  logic [ARR_IDX_W:0] out_col_cnt, out_col_cnt_ps;
 
   logic [7:0] lin_out_valA, lin_out_valA_ps;
   logic [7:0] lin_out_valB, lin_out_valB_ps;
@@ -55,11 +64,8 @@ module linear (
   assign lin_arr_out_addr    = slrx_regs_intrf.host_regs[ARR_OUT_ADDR_RI];
   assign lin_arr_in_dim      = slrx_regs_intrf.host_regs[ARR_IN_DIM_RI];
   assign lin_arr_out_dim     = slrx_regs_intrf.host_regs[ARR_OUT_DIM_RI];
-  assign lin_out_col_idx     = slrx_regs_intrf.host_regs[OUT_COL_IDX_RI];
 
-  assign half_cols = (lin_arr_out_dim + 1) >> 1;        // ceil(out_dim/2) -- not used for stepping, A/B are this call's pair
-  assign col_b     = lin_out_col_idx + 1;                // B is simply "the next column" within this pair
-  // NOTE: driver calls with out_col_idx = 0,2,4,... ; block B handles col+1
+  assign col_b     = out_col_cnt + 1;                // B is simply "the next column" within this pair
 
   function automatic logic [7:0] calc_lin_element(
       input [DIM_MAX_SIZE-1:0][7:0] wv,
@@ -100,8 +106,9 @@ module linear (
     wgtA_ps = wgtA; wgtB_ps = wgtB;
     biasA_ps = biasA; biasB_ps = biasB;
     lin_out_valA_ps = lin_out_valA; lin_out_valB_ps = lin_out_valB;
-    lin_rslt_out_addr_ps = lin_arr_out_addr + lin_out_col_idx;
+    lin_rslt_out_addr_ps = lin_arr_out_addr + out_col_cnt;
     activeB_ps = activeB;
+    out_col_cnt_ps = out_col_cnt;
 
     case (state)
 
@@ -110,7 +117,11 @@ module linear (
           next_state = READ_IN_VEC;
         end
         else if (slrx_cmd == LIN_CALC) begin
-          activeB_ps = (col_b < lin_arr_out_dim);
+          // internal loop starts at column-pair 0; the FSM will loop ALL column-pairs
+          // before asserting DONE (no per-pair host round trip)
+          out_col_cnt_ps = 0;
+          lin_rslt_out_addr_ps = lin_arr_out_addr;
+          activeB_ps = (1 < lin_arr_out_dim);   // col_b for column 0 is column 1
           next_state = READ_WGTA;
         end
       end
@@ -129,24 +140,13 @@ module linear (
 
       READ_WGTA: begin
         mem_intf_read.mem_req        = 1;
-        mem_intf_read.mem_start_addr = lin_wgt_arr_addr + (lin_out_col_idx * lin_arr_in_dim);
+        mem_intf_read.mem_start_addr = lin_wgt_arr_addr + (out_col_cnt * lin_arr_in_dim);
         mem_intf_read.mem_size_bytes = lin_arr_in_dim;
         if (mem_intf_read.mem_valid) begin
           for (int i = 0; i < DIM_MAX_SIZE; i++)
             wgtA_ps[i] = (i < lin_arr_in_dim) ? mem_intf_read.mem_data[i] : 8'd0;
           mem_intf_read.mem_req = 0;
-          next_state = READ_BIASA;
-        end
-      end
-
-      READ_BIASA: begin
-        mem_intf_read.mem_req        = 1;
-        mem_intf_read.mem_start_addr = lin_bias_vec_addr + (4*lin_out_col_idx);
-        mem_intf_read.mem_size_bytes = 4;
-        if (mem_intf_read.mem_valid) begin
-          biasA_ps = mem_intf_read.mem_data[3:0];
-          mem_intf_read.mem_req = 0;
-          next_state = activeB ? READ_WGTB : CALC;
+          next_state = activeB ? READ_WGTB : READ_BIAS;
         end
       end
 
@@ -158,16 +158,20 @@ module linear (
           for (int i = 0; i < DIM_MAX_SIZE; i++)
             wgtB_ps[i] = (i < lin_arr_in_dim) ? mem_intf_read.mem_data[i] : 8'd0;
           mem_intf_read.mem_req = 0;
-          next_state = READ_BIASB;
+          next_state = READ_BIAS;
         end
       end
 
-      READ_BIASB: begin
+      // biasA (out_col_cnt) and biasB (out_col_cnt+1) are adjacent int32_t elements of
+      // the SAME bias array -- fetch both in one merged read (8 bytes, well within the
+      // 32-byte bus width) instead of two separate round trips.
+      READ_BIAS: begin
         mem_intf_read.mem_req        = 1;
-        mem_intf_read.mem_start_addr = lin_bias_vec_addr + (4*col_b);
-        mem_intf_read.mem_size_bytes = 4;
+        mem_intf_read.mem_start_addr = lin_bias_vec_addr + (4*out_col_cnt);
+        mem_intf_read.mem_size_bytes = activeB ? 8 : 4;
         if (mem_intf_read.mem_valid) begin
-          biasB_ps = mem_intf_read.mem_data[3:0];
+          biasA_ps = mem_intf_read.mem_data[3:0];
+          if (activeB) biasB_ps = mem_intf_read.mem_data[7:4];
           mem_intf_read.mem_req = 0;
           next_state = CALC;
         end
@@ -183,8 +187,18 @@ module linear (
       WRITE: begin
         mem_intf_write.mem_req = 1;
         if (mem_intf_write.mem_ack) begin
-          next_state = DONE;
           mem_intf_write.mem_req = 0;
+          if ((out_col_cnt + 2) < lin_arr_out_dim) begin
+            // more column-pairs remain: loop straight back into READ_WGTA with zero
+            // bubble cycles -- no DONE/IDLE/host round trip between column-pairs
+            out_col_cnt_ps        = out_col_cnt + 2;
+            lin_rslt_out_addr_ps  = lin_arr_out_addr + out_col_cnt_ps;
+            activeB_ps            = ((out_col_cnt_ps + 1) < lin_arr_out_dim);
+            next_state            = READ_WGTA;
+          end
+          else begin
+            next_state = DONE;
+          end
         end
       end
 
@@ -205,6 +219,7 @@ module linear (
       lin_out_valA  <= 0; lin_out_valB <= 0;
       lin_rslt_out_addr <= 0;
       activeB       <= 1'b0;
+      out_col_cnt   <= 0;
     end else begin
       state         <= next_state;
       in_vec        <= in_vec_ps;
@@ -213,6 +228,7 @@ module linear (
       lin_out_valA  <= lin_out_valA_ps; lin_out_valB <= lin_out_valB_ps;
       lin_rslt_out_addr <= lin_rslt_out_addr_ps;
       activeB       <= activeB_ps;
+      out_col_cnt   <= out_col_cnt_ps;
     end
   end
 

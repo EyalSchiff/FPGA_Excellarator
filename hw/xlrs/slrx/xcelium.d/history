@@ -1,0 +1,5 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(30Jun2026:18:01:44):( xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=slrx )

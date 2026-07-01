@@ -47,41 +47,41 @@ module slrx (
    logic [XBOX_NUM_REGS-1:0][31:0] host_regs_data_out_ps ;  // pre-sampled  
   logic [XBOX_NUM_REGS-1:0] host_regs_valid_out_ps ; // pre-sampled 
 
-  logic xlr_done;  
-  
+  logic xlr_done;
+
   always_comb begin
-  
+
    host_regs_data_out_ps = host_regs_data_out ; // default
-   host_regs_valid_out_ps = host_regs_valid_out ; // default     
- 
-   `ifdef XREGS_OUT_EN 
-   if (active_xlr==slr_xlr_t'(CONV)) begin   
-     host_regs_data_out_ps  = slrx_regs_intrf_conv.host_regs_data_out;                                                                       
-     host_regs_valid_out_ps = slrx_regs_intrf_conv.host_regs_valid_out;    
-   end else if (active_xlr==slr_xlr_t'(POOL)) begin      
-     host_regs_data_out_ps  = slrx_regs_intrf_pool.host_regs_data_out;                                                                       
-     host_regs_valid_out_ps = slrx_regs_intrf_pool.host_regs_valid_out;        
-   end else if (active_xlr==slr_xlr_t'(LIN)) begin      
-     host_regs_data_out_ps  = slrx_regs_intrf_lin.host_regs_data_out;                                                                       
-     host_regs_valid_out_ps = slrx_regs_intrf_lin.host_regs_valid_out;  
+   host_regs_valid_out_ps = host_regs_valid_out ; // default
+
+   `ifdef XREGS_OUT_EN
+   if (active_xlr==slr_xlr_t'(CONV)) begin
+     host_regs_data_out_ps  = slrx_regs_intrf_conv.host_regs_data_out;
+     host_regs_valid_out_ps = slrx_regs_intrf_conv.host_regs_valid_out;
+   end else if (active_xlr==slr_xlr_t'(POOL)) begin
+     host_regs_data_out_ps  = slrx_regs_intrf_pool.host_regs_data_out;
+     host_regs_valid_out_ps = slrx_regs_intrf_pool.host_regs_valid_out;
+   end else if (active_xlr==slr_xlr_t'(LIN)) begin
+     host_regs_data_out_ps  = slrx_regs_intrf_lin.host_regs_data_out;
+     host_regs_valid_out_ps = slrx_regs_intrf_lin.host_regs_valid_out;
    end
    `endif
-  
+
    xlr_done = (slrx_regs_intrf_conv.xlr_done === 1'b1) || (slrx_regs_intrf_pool.xlr_done === 1'b1) || (slrx_regs_intrf_lin.xlr_done === 1'b1);
-   
+
    if (xlr_done) begin
       host_regs_data_out_ps[XLR_DONE_RI][0] = 1;
       host_regs_valid_out_ps[XLR_DONE_RI] = 1;
    end
    if (host_regs_read_pulse[XLR_DONE_RI]) begin
       host_regs_data_out_ps[XLR_DONE_RI][0] = 0;
-      host_regs_valid_out_ps[XLR_DONE_RI] = 0;     
-   end     
- 
-   if (host_regs_read_pulse[XLR_DONE_RI]) host_regs_data_out_ps[XLR_DONE_RI][0] = 0;  
-   else if (xlr_done) host_regs_data_out_ps[XLR_DONE_RI][0] = 1;     
-   host_regs_valid_out_ps[XLR_DONE_RI] = host_regs_data_out_ps[XLR_DONE_RI][0];     
-    
+      host_regs_valid_out_ps[XLR_DONE_RI] = 0;
+   end
+
+   if (host_regs_read_pulse[XLR_DONE_RI]) host_regs_data_out_ps[XLR_DONE_RI][0] = 0;
+   else if (xlr_done) host_regs_data_out_ps[XLR_DONE_RI][0] = 1;
+   host_regs_valid_out_ps[XLR_DONE_RI] = host_regs_data_out_ps[XLR_DONE_RI][0];
+
   end // always_comb
  
   //---------------------------------------------------------------------------

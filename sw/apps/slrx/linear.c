@@ -32,18 +32,17 @@ void lin_elem_setup(uint8_t* lin_arr_out,  // linear output feature-map (single 
 
 //------------------------------------------------------------------------------------------------------------
 
-void lin_elem_xlr(int lin_out_idx) {   // output vector element index
+void lin_elem_xlr(void) {   // HW loops ALL output column-pairs internally
 
-    #ifdef HLCM    
+    #ifdef HLCM
     printf("HLCM does not support HW acceleration, quitting\n\n");
     bm_quit_app();
     #else
 
-    HOST_REG(OUT_COL_IDX_RI) = lin_out_idx; 
     HOST_REG(XLR_START_RI)   = LIN_CALC ; // LIN_CALC is defined at included ../../../hw/top/slrx_enums.svh
-  
+
     while (!HOST_REG(XLR_DONE_RI)) {
-       //printf("Pool window Polling ...\n"); // comment for quite execution
+       // poll until ALL output columns have been computed by HW
     }
     #endif
 }
@@ -81,12 +80,8 @@ void linear(uint8_t* lin_arr_out,     // linear output feature-map (single row)
 
 
     #ifdef LIN_XON
-    lin_elem_setup(lin_arr_out, lin_arr_in, lin_in_dim, lin_out_dim, linear_w_trn, linear_b);    
-    #endif
-    #ifdef LIN_XON
-    for (int lin_out_idx = 0; lin_out_idx < lin_out_dim; lin_out_idx += 2) {
-        lin_elem_xlr(lin_out_idx); // HW computes this column AND lin_out_idx+1 together
-    }
+    lin_elem_setup(lin_arr_out, lin_arr_in, lin_in_dim, lin_out_dim, linear_w_trn, linear_b);
+    lin_elem_xlr();   // HW computes the entire output vector internally
     #else
     for (int lin_out_idx = 0; lin_out_idx < lin_out_dim; lin_out_idx++) {
         int32_t acc = linear_b[lin_out_idx];

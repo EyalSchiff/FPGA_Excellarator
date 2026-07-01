@@ -260,11 +260,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel_word_idx[1]",
+					"name" : "sel_word_idx[0]",
 					"strict" : false
 				},
 				{
-					"name" : "sel_word_idx[0]",
+					"name" : "sel_word_idx[1]",
 					"strict" : false
 				},
 				{
