@@ -9,7 +9,7 @@ This repository presents the design, implementation, and rigorous optimization o
 The ultimate goal of this project was to offload compute-heavy deep learning workloads from the processor to a dedicated hardware execution engine, minimizing latency and maximizing throughput.
 
 * **The Baseline (Software Only):** When running the inference algorithm purely in software on the RISC-V (Kuntz5) core, the execution was extraordinarily slow, requiring **over 1,000,000 clock cycles** to process a single operational pass due to the sequential nature of scalar ALU operations.
-* **The Solution (Hardware Accelerated):** By designing a custom hardware accelerator architecture and applying aggressive co-design refactoring, we smashed the processing bottleneck. We achieved an astonishing **>250x overall speedup**, successfully dropping the end-to-end execution latency from the initial hardware setup of 8,337 cycles down to exactly **4,029 clock cycles**—surpassing our target benchmark of 4,000 cycles.
+* **The Solution (Hardware Accelerated):** By designing a custom hardware accelerator architecture and applying aggressive co-design refactoring, we smashed the processing bottleneck. We achieved an astonishing **>250x overall speedup**, successfully dropping the end-to-end execution down to exactly **4,029 clock cycles**.
 
 ---
 
